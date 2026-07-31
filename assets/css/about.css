@@ -1,0 +1,43 @@
+/* ===========================
+ABOUT PAGE
+=========================== */
+
+.page-header{
+
+background:#0F172A;
+
+padding:120px 0 70px;
+
+color:#fff;
+
+text-align:center;
+
+}
+
+.page-header h1{
+
+font-size:48px;
+
+font-weight:700;
+
+}
+
+.page-header p{
+
+opacity:.8;
+
+}
+
+.card{
+
+border-radius:20px;
+
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+}

@@ -1,0 +1,130 @@
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+.hero-content h1{
+
+    font-size:48px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.hero-content{
+
+    text-align:center;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:90%;
+
+}
+
+.hero-content h1{
+
+    font-size:36px;
+
+}
+
+.hero-content p{
+
+    font-size:16px;
+
+}
+
+.hero-buttons{
+
+    justify-content:center;
+
+}
+
+.swiper-button-next,
+.swiper-button-prev{
+
+    display:none;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.hero-content h1{
+
+    font-size:30px;
+
+}
+
+.hero-buttons .btn{
+
+    width:100%;
+
+}
+
+}
+
+/* ==========================================
+   GENERAL RESPONSIVE
+========================================== */
+
+@media(max-width:991px){
+
+.section-title h2{
+
+    font-size:34px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.section-title h2{
+
+    font-size:30px;
+
+}
+
+.category-card,
+.product-card,
+.brand-box,
+.testimonial-card{
+
+    margin-bottom:20px;
+
+}
+
+.footer{
+
+    text-align:center;
+
+}
+
+.social-icons{
+
+    justify-content:center;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.section-title h2{
+
+    font-size:26px;
+
+}
+
+.btn{
+
+    width:100%;
+
+    margin-bottom:10px;
+
+}
+
+}

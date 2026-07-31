@@ -1,0 +1,81 @@
+/*===========================
+AUTHORIZED DEALERS
+===========================*/
+
+.dealer-card{
+
+background:#fff;
+
+padding:30px;
+
+text-align:center;
+
+border-radius:20px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+transition:.4s;
+
+height:100%;
+
+}
+
+.dealer-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.dealer-card img{
+
+height:80px;
+
+object-fit:contain;
+
+margin-bottom:20px;
+
+}
+
+.dealer-card h5{
+
+font-weight:700;
+
+margin-bottom:15px;
+
+}
+
+.dealer-card p{
+
+font-size:15px;
+
+color:#666;
+
+min-height:70px;
+
+}
+
+.feature-box{
+
+background:#fff;
+
+padding:40px;
+
+border-radius:20px;
+
+text-align:center;
+
+height:100%;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.feature-box i{
+
+font-size:45px;
+
+color:#F59E0B;
+
+margin-bottom:20px;
+
+}

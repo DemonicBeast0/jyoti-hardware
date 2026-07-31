@@ -1,0 +1,25 @@
+# System Files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Environment
+.env
+
+# Composer
+/vendor/
+
+# Node
+node_modules/
+
+# Cache
+.cache/
+
+# XAMPP
+php_errors.log
