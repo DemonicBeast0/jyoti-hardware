@@ -19,7 +19,7 @@ include 'includes/navbar.php';
 
             <div class="col-lg-6">
 
-                <img src="assets/images/about/company.jpg"
+                <img src="assets/images/about/store.jpg"
                      class="img-fluid rounded shadow"
                      alt="Jyoti Hardware">
 

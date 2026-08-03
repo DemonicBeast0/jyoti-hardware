@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 260" role="img" aria-labelledby="title">
+  <title id="title">Panchakanya Group</title>
+  <rect width="480" height="260" fill="#fff"/>
+  <g transform="translate(240 78)">
+    <path d="M0-62 14-15 61-36 29 3 62 27 15 17 0 66-15 17-62 27-29 3-61-36-14-15Z" fill="#0865a8"/>
+    <path d="M0-62 14-15 61-36 29 3 62 27 15 17 0 66-15 17-62 27-29 3-61-36-14-15Z" fill="none" stroke="#ffd400" stroke-width="10" stroke-linejoin="round"/>
+    <circle r="12" fill="#fff"/>
+  </g>
+  <text x="240" y="181" fill="#0865a8" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700" text-anchor="middle">Panchakanya</text>
+  <text x="240" y="222" fill="#0865a8" font-family="Arial, Helvetica, sans-serif" font-size="23" letter-spacing="16" text-anchor="middle">GROUP</text>
+</svg>

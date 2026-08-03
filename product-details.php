@@ -2,14 +2,13 @@
 
 require_once 'config/database.php';
 
-include 'includes/header.php';
-include 'includes/navbar.php';
-
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-
     header("Location: products.php");
     exit;
 }
+
+include 'includes/header.php';
+include 'includes/navbar.php';
 
 $id = (int)$_GET['id'];
 
@@ -119,12 +118,21 @@ Out of Stock
 <br><br>
 
 <a
-href="quote.php?product=<?= urlencode($product['name']); ?>"
+href="contact.php?product_id=<?= urlencode($product['id']); ?>"
 class="btn btn-warning btn-lg">
 
-Request Quote
+Inquire About This Product
 
 </a>
+
+<?php if ($product['stock'] > 0): ?>
+<form action="cart-action.php" method="post" class="d-inline">
+    <input type="hidden" name="action" value="add">
+    <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+    <input type="hidden" name="return_to" value="product-details.php?id=<?= $product['id']; ?>">
+    <button type="submit" class="btn btn-outline-dark btn-lg">Add to Cart</button>
+</form>
+<?php endif; ?>
 
 <a
 href="products.php"

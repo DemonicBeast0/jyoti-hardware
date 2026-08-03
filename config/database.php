@@ -1,14 +1,15 @@
 <?php
 
-$host = "localhost";
-$dbname = "jyoti_hardware";
-$username = "root";
-$password = "";
+$host = getenv('DB_HOST') ?: 'localhost';
+$dbname = getenv('DB_NAME') ?: 'jyoti_hardware';
+$username = getenv('DB_USER') ?: 'root';
+$password = getenv('DB_PASSWORD') ?: '';
+$port = getenv('DB_PORT') ?: '3306';
 
 try {
 
     $pdo = new PDO(
-        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
+        "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4",
         $username,
         $password
     );
@@ -18,6 +19,7 @@ try {
 
 } catch (PDOException $e) {
 
-    die("Database Connection Failed: " . $e->getMessage());
+    http_response_code(500);
+    exit('Database connection failed. Check the database settings in config/database.php.');
 
 }

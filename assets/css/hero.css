@@ -1,117 +1,18 @@
-/* ======================================================
-   HERO SECTION
-====================================================== */
-
-.hero-section{
-    position: relative;
-}
-
-.heroSwiper{
-    width:100%;
-    height:100vh;
-}
-
-.hero-slide{
-    position:relative;
-    width:100%;
-    height:100vh;
-    overflow:hidden;
-}
-
-.hero-slide img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    animation:zoomHero 12s linear infinite;
-}
-
-.overlay{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-        rgba(10,20,35,.75),
-        rgba(10,20,35,.65)
-    );
-    z-index:1;
-}
-
-.hero-content{
-    position:absolute;
-    top:50%;
-    left:0;
-    transform:translateY(-50%);
-    max-width:700px;
-    z-index:2;
-    color:#fff;
-}
-
-.hero-subtitle{
-    display:inline-block;
-    background:rgba(245,158,11,.15);
-    color:#F59E0B;
-    padding:10px 20px;
-    border-radius:50px;
-    margin-bottom:20px;
-    font-size:15px;
-    font-weight:600;
-    letter-spacing:1px;
-}
-
-.hero-content h1{
-    font-size:64px;
-    font-weight:800;
-    line-height:1.1;
-    margin-bottom:25px;
-}
-
-.hero-content p{
-    font-size:18px;
-    color:#e5e7eb;
-    line-height:1.8;
-    margin-bottom:35px;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
-}
-
-.hero-buttons .btn{
-    padding:15px 35px;
-    border-radius:50px;
-    font-weight:600;
-    transition:.35s;
-}
-
-.hero-buttons .btn-outline-light:hover{
-    background:#fff;
-    color:#111;
-}
-
-.swiper-button-next,
-.swiper-button-prev{
-    color:#fff;
-}
-
-.swiper-pagination-bullet{
-    background:#fff;
-    opacity:.5;
-}
-
-.swiper-pagination-bullet-active{
-    background:#F59E0B;
-    opacity:1;
-}
-
-@keyframes zoomHero{
-
-    0%{
-        transform:scale(1);
-    }
-
-    100%{
-        transform:scale(1.12);
-    }
-
-}
+/* Hero section */
+.hero-section { position: relative; }
+.heroSwiper, .hero-slide { height: min(720px, calc(100vh - var(--header-height, 96px))); min-height: 520px; }
+.hero-slide { position: relative; overflow: hidden; }
+.hero-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: zoomHero 12s linear infinite alternate; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(3, 12, 27, .92) 0%, rgba(10, 20, 35, .76) 48%, rgba(10, 20, 35, .38) 100%); z-index: 1; }
+.hero-container { height: 100%; position: relative; z-index: 2; }
+.hero-content { position: absolute; top: 50%; transform: translateY(-50%); max-width: 700px; color: #fff; text-shadow: 0 2px 12px rgba(0, 0, 0, .7); }
+.hero-subtitle { display: inline-block; background: rgba(245, 158, 11, .18); color: #fbbf24; padding: 10px 20px; border-radius: 50px; margin-bottom: 20px; font-size: 15px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+.hero-content h1, .hero-content h2 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin: 0 0 25px; color: #fff !important; }
+.hero-content p { font-size: 18px; color: #fff !important; line-height: 1.8; margin-bottom: 35px; }
+.hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+.hero-buttons .btn { padding: 15px 35px; border-radius: 50px; font-weight: 600; transition: .35s; }
+.hero-buttons .btn-outline-light:hover { background: #fff; color: #111; }
+.swiper-button-next, .swiper-button-prev { color: #fff; }
+.swiper-pagination-bullet { background: #fff; opacity: .55; }
+.swiper-pagination-bullet-active { background: #f59e0b; opacity: 1; }
+@keyframes zoomHero { from { transform: scale(1); } to { transform: scale(1.1); } }

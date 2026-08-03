@@ -61,10 +61,10 @@ View Details
 
 </a>
 
-<a href="contact.php"
+<a href="contact.php?product_id=<?= urlencode($product['id']); ?>"
 class="btn btn-warning">
 
-Request Quote
+Inquire Now
 
 </a>
 

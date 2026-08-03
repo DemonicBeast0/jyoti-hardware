@@ -356,38 +356,14 @@ Products Found
 
                 </a>
 
-                <button
-                    class="btn btn-outline-dark quick-view"
-
-                    data-id="<?= $product['id']; ?>"
-
-                    data-name="<?= htmlspecialchars($product['name']); ?>"
-
-                    data-brand="<?= htmlspecialchars($product['brand_name']); ?>"
-
-                    data-category="<?= htmlspecialchars($product['category_name']); ?>"
-
-                    data-image="<?= htmlspecialchars($product['image']); ?>"
-
-                    data-description="<?= htmlspecialchars($product['description']); ?>"
-
-                    data-price="<?= number_format($product['price'],2); ?>"
-
-                    data-bs-toggle="modal"
-
-                    data-bs-target="#productModal">
-
-                    Quick View
-
-                </button>
-
-                <a
-                    href="quote.php?product=<?= urlencode($product['name']); ?>"
-                    class="btn btn-warning">
-
-                    Request Quote
-
-                </a>
+                <?php if ($product['stock'] > 0): ?>
+                <form action="cart-action.php" method="post">
+                    <input type="hidden" name="action" value="add">
+                    <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+                    <input type="hidden" name="return_to" value="products.php">
+                    <button type="submit" class="btn btn-outline-dark btn-sm w-100"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
+                </form>
+                <?php endif; ?>
 
             </div>
 
@@ -438,113 +414,5 @@ Show All Products
 </div>
 
 </section>
-
-<!-- ===========================
-QUICK VIEW MODAL
-============================ -->
-
-<div class="modal fade" id="productModal" tabindex="-1">
-
-<div class="modal-dialog modal-lg modal-dialog-centered">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<h5 class="modal-title" id="modalTitle">
-
-Product Details
-
-</h5>
-
-<button
-type="button"
-class="btn-close"
-data-bs-dismiss="modal">
-
-</button>
-
-</div>
-
-<div class="modal-body">
-
-<div class="row">
-
-<div class="col-md-6">
-
-<img
-id="modalImage"
-src=""
-class="img-fluid rounded">
-
-</div>
-
-<div class="col-md-6">
-
-<h3 id="modalName"></h3>
-
-<p>
-
-<strong>Brand:</strong>
-
-<span id="modalBrand"></span>
-
-</p>
-
-<p>
-
-<strong>Category:</strong>
-
-<span id="modalCategory"></span>
-
-</p>
-
-<p>
-
-<strong>Price:</strong>
-
-Rs.
-
-<span id="modalPrice"></span>
-
-</p>
-
-<p id="modalDescription"></p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<script>
-
-document.querySelectorAll(".quick-view").forEach(button=>{
-
-button.addEventListener("click",function(){
-
-document.getElementById("modalName").innerText=this.dataset.name;
-
-document.getElementById("modalBrand").innerText=this.dataset.brand;
-
-document.getElementById("modalCategory").innerText=this.dataset.category;
-
-document.getElementById("modalPrice").innerText=this.dataset.price;
-
-document.getElementById("modalDescription").innerText=this.dataset.description;
-
-document.getElementById("modalImage").src=this.dataset.image;
-
-});
-
-});
-
-</script>
 
 <?php include 'includes/footer.php'; ?>

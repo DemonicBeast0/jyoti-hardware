@@ -44,7 +44,7 @@ require_once __DIR__ . '/../../config/categories.php';
 
                         <h4><?= htmlspecialchars($category['title']); ?></h4>
 
-                        <a href="products.php?category=<?= urlencode($category['slug']); ?>"
+                        <a href="products.php?category=<?= urlencode($category['id']); ?>"
                            class="category-btn">
 
                             Explore Products

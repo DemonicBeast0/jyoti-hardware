@@ -22,7 +22,7 @@ require_once __DIR__ . '/../../config/brands.php';
 
                 <div class="brand-box">
 
-                    <img src="<?= $brand['logo']; ?>"
+                    <img src="<?= htmlspecialchars($brand['logo']); ?>"
                          alt="<?= htmlspecialchars($brand['name']); ?>"
                          class="img-fluid">
 
