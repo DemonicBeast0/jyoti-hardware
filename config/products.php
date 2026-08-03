@@ -11,8 +11,6 @@ $products = [
 
     "category" => "Power Tools",
 
-    "badge" => "Best Seller",
-
     "image" => "assets/images/products/bosch-drill.jpg",
 
     "gallery" => [
@@ -52,8 +50,7 @@ $products = [
     "name"=>"Makita Angle Grinder",
     "brand"=>"Makita",
     "category"=>"Power Tools",
-    "image"=>"assets/images/products/makita-grinder.jpg",
-    "badge"=>"New"
+    "image"=>"assets/images/products/makita-grinder.jpg"
 ],
 
 [
@@ -61,8 +58,7 @@ $products = [
     "name"=>"Ingco Hammer",
     "brand"=>"Ingco",
     "category"=>"Hand Tools",
-    "image"=>"assets/images/products/ingco-hammer.jpg",
-    "badge"=>"Popular"
+    "image"=>"assets/images/products/ingco-hammer.jpg"
 ],
 
 [
@@ -70,8 +66,7 @@ $products = [
     "name"=>"Stanley Measuring Tape",
     "brand"=>"Stanley",
     "category"=>"Hand Tools",
-    "image"=>"assets/images/products/stanley-tape.jpg",
-    "badge"=>"Hot"
+    "image"=>"assets/images/products/stanley-tape.jpg"
 ],
 
 [
@@ -79,8 +74,7 @@ $products = [
     "name"=>"PVC Pipe",
     "brand"=>"Supreme",
     "category"=>"Plumbing",
-    "image"=>"assets/images/products/pvc-pipe.jpg",
-    "badge"=>"Top"
+    "image"=>"assets/images/products/pvc-pipe.jpg"
 ],
 
 [
@@ -88,8 +82,7 @@ $products = [
     "name"=>"Electrical Wire",
     "brand"=>"Havells",
     "category"=>"Electrical",
-    "image"=>"assets/images/products/wire.jpg",
-    "badge"=>"New"
+    "image"=>"assets/images/products/wire.jpg"
 
 ]
 

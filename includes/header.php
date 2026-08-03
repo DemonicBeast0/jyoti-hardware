@@ -16,27 +16,27 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO -->
-    <title>Jyoti Hardware & Suppliers | Trusted Hardware Store in Nepal</title>
+    <title>Jyoti Suppliers | Quality Hardware in Nepal</title>
 
     <meta name="description"
-        content="Jyoti Hardware & Suppliers is Nepal's trusted supplier of hardware, construction materials, plumbing, electrical supplies, paints and industrial tools.">
+        content="Jyoti Suppliers is Nepal's trusted source for hardware, construction materials, plumbing, electrical supplies, paints and industrial tools.">
 
     <meta name="keywords"
-        content="Jyoti Hardware, Hardware Nepal, Construction Materials, Power Tools, Plumbing, Electrical, Bosch, Makita, Ingco, Stanley">
+        content="Jyoti Suppliers, Hardware Nepal, Construction Materials, Power Tools, Plumbing, Electrical, Bosch, Makita, Ingco, Stanley">
 
     <meta name="author"
-        content="Jyoti Hardware & Suppliers">
+        content="Jyoti Suppliers">
 
     <meta name="robots"
         content="index, follow">
 
     <meta name="theme-color"
-        content="#0F172A">
+        content="#152F57">
 
     <!-- Favicon -->
     <link rel="icon"
-        type="image/png"
-        href="assets/images/logo/logo.png">
+        type="image/svg+xml"
+        href="assets/images/logo/jyoti-suppliers.svg">
 
     <!-- Google Fonts -->
     <link rel="preconnect"

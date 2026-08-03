@@ -1,13 +1,16 @@
 <?php
+require_once __DIR__ . '/../config/database.php';
+
 $currentPage = basename($_SERVER['PHP_SELF'] ?? 'index.php');
 $navSearch = trim($_GET['search'] ?? '');
 $cartCount = array_sum($_SESSION['cart'] ?? []);
+$selectedCategory = filter_input(INPUT_GET, 'category', FILTER_VALIDATE_INT) ?: 0;
+$navCategories = $pdo->query('SELECT id, name FROM categories WHERE status = 1 ORDER BY name ASC')->fetchAll();
 ?>
 <nav class="navbar navbar-expand-xxl fixed-top" aria-label="Primary navigation">
     <div class="container">
-        <a class="navbar-brand" href="index.php" aria-label="Jyoti Hardware home">
-            <img src="assets/images/logo/logo.png" alt="Jyoti Hardware & Suppliers">
-            <span class="brand-copy d-none d-md-flex"><strong>Jyoti Hardware</strong><small>Tools &amp; supplies</small></span>
+        <a class="navbar-brand" href="index.php" aria-label="Jyoti Suppliers home">
+            <img src="assets/images/logo/jyoti-suppliers.svg" alt="Jyoti Suppliers">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu"
@@ -18,15 +21,15 @@ $cartCount = array_sum($_SESSION['cart'] ?? []);
         <div class="collapse navbar-collapse" id="mainMenu">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item"><a class="nav-link <?= $currentPage === 'index.php' ? 'active' : ''; ?>" href="index.php">Home</a></li>
+                <li class="nav-item"><a class="nav-link <?= in_array($currentPage, ['products.php', 'product-details.php'], true) && !($currentPage === 'products.php' && $selectedCategory) ? 'active' : ''; ?>" href="products.php">Products</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle <?= in_array($currentPage, ['products.php', 'product-details.php'], true) ? 'active' : ''; ?>" href="products.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
+                    <a class="nav-link dropdown-toggle <?= $currentPage === 'products.php' && $selectedCategory ? 'active' : ''; ?>" href="products.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
                     <ul class="dropdown-menu shadow-lg border-0">
-                        <li><a class="dropdown-item" href="products.php?category=1">Power Tools</a></li>
-                        <li><a class="dropdown-item" href="products.php?category=2">Hand Tools</a></li>
-                        <li><a class="dropdown-item" href="products.php?category=3">Electrical</a></li>
-                        <li><a class="dropdown-item" href="products.php?category=4">Plumbing</a></li>
-                        <li><a class="dropdown-item" href="products.php?category=5">Paints</a></li>
-                        <li><a class="dropdown-item" href="products.php">All Products</a></li>
+                        <li><a class="dropdown-item <?= $currentPage === 'products.php' && !$selectedCategory ? 'active' : ''; ?>" href="products.php"><i class="fas fa-border-all me-2" aria-hidden="true"></i>All Categories</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <?php foreach ($navCategories as $category): ?>
+                            <li><a class="dropdown-item <?= $selectedCategory === (int) $category['id'] ? 'active' : ''; ?>" href="products.php?category=<?= $category['id']; ?>"><?= htmlspecialchars($category['name'], ENT_QUOTES, 'UTF-8'); ?></a></li>
+                        <?php endforeach; ?>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link <?= $currentPage === 'brands.php' ? 'active' : ''; ?>" href="brands.php">Brands</a></li>

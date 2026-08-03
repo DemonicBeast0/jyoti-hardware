@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">Jyoti Suppliers</title><desc id="desc">Jyoti Suppliers quality hardware trusted always</desc>
+  <rect width="1200" height="430" fill="white"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="45" y="276" fill="#152f57" font-size="238" font-weight="800">J</text>
+    <text x="155" y="276" fill="#f58a16" font-size="238" font-weight="800">S</text>
+    <path d="M234 74l31 0 23 41-23 41-31 0-23-41zM242 144h16v181l-8 22-8-22zM226 164l48-22v28l-48 22zM226 211l48-22v28l-48 22zM226 258l48-22v28l-48 22z" fill="#202124"/>
+    <circle cx="249" cy="115" r="17" fill="white"/>
+    <path d="M385 70v250" stroke="#202124" stroke-width="4"/>
+    <text x="430" y="212" fill="#152f57" font-size="140" font-weight="800" letter-spacing="3">JYOTI</text>
+    <text x="436" y="300" fill="#202124" font-size="66" font-weight="800" letter-spacing="2">SUPPLIERS</text>
+    <path d="M436 334h76M953 334h76" stroke="#f58a16" stroke-width="6"/>
+    <text x="530" y="342" fill="#202124" font-size="22" font-weight="700" letter-spacing="1">QUALITY HARDWARE, TRUSTED ALWAYS</text>
+  </g>
+</svg>

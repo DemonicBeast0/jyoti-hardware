@@ -1,11 +1,11 @@
 /* ==========================================================
-   JYOTI HARDWARE ADMIN PANEL
+   JYOTI SUPPLIERS ADMIN PANEL
 ========================================================== */
 
 :root{
 
-    --primary:#0F172A;
-    --secondary:#F59E0B;
+    --primary:#152F57;
+    --secondary:#F58A16;
     --success:#16A34A;
     --danger:#DC2626;
     --info:#0EA5E9;
@@ -56,7 +56,7 @@ SIDEBAR
     width:270px;
     height:100vh;
 
-    background:linear-gradient(180deg,#0F172A,#111827);
+    background:linear-gradient(180deg,#152F57,#0d203c);
 
     overflow:auto;
 
@@ -251,7 +251,7 @@ CONTENT
     margin-bottom:20px;
     place-items:center;
     border-radius:15px;
-    background:linear-gradient(135deg,#fbbf24,#f59e0b);
+    background:linear-gradient(135deg,#f7a548,#f58a16);
     color:#fff;
     font-size:1.3rem;
     box-shadow:0 8px 18px rgba(245,158,11,.25);
@@ -322,7 +322,7 @@ CONTENT
 
 textarea.form-control{min-height:auto;}
 .form-control:focus,.form-select:focus{
-    border-color:#f59e0b;
+    border-color:#f58a16;
     box-shadow:0 0 0 .22rem rgba(245,158,11,.15);
 }
 
@@ -332,14 +332,14 @@ textarea.form-control{min-height:auto;}
 }
 
 .btn-warning{
-    border-color:#f59e0b;
-    background:#f59e0b;
+    border-color:#f58a16;
+    background:#f58a16;
     color:#1f2937;
 }
 
 .btn-warning:hover,.btn-warning:focus{
-    border-color:#d97706;
-    background:#d97706;
+    border-color:#cc6c0d;
+    background:#cc6c0d;
     color:#fff;
 }
 

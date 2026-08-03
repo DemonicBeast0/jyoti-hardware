@@ -80,10 +80,6 @@ include '../includes/navbar.php';
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Badge</label>
-                            <input type="text" name="badge" class="form-control" value="<?= htmlspecialchars($product['badge']); ?>">
-                        </div>
-                        <div class="col-md-6 mb-3">
                             <label class="form-label">Status</label>
                             <select name="status" class="form-select">
                                 <option value="1" <?= $product['status'] ? 'selected' : ''; ?>>Active</option>

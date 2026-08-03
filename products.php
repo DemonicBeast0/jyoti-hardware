@@ -292,16 +292,6 @@ Products Found
 
         <div class="position-relative">
 
-            <?php if(!empty($product['badge'])): ?>
-
-                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3">
-
-                    <?= htmlspecialchars($product['badge']); ?>
-
-                </span>
-
-            <?php endif; ?>
-
             <img
                 src="<?= htmlspecialchars($product['image']); ?>"
                 alt="<?= htmlspecialchars($product['name']); ?>"

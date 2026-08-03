@@ -1,1 +1,1 @@
-console.log("Jyoti Hardware Admin Panel Loaded");
+console.log("Jyoti Suppliers Admin Panel Loaded");

@@ -11,7 +11,7 @@
 
 .section-title span{
 
-    color:#F59E0B;
+    color:#F58A16;
     font-weight:600;
     letter-spacing:2px;
 
@@ -22,7 +22,7 @@
     font-size:45px;
     margin-top:10px;
     margin-bottom:15px;
-    color:#0F172A;
+    color:#152F57;
 
 }
 
@@ -83,7 +83,7 @@
 .category-content i{
 
     font-size:40px;
-    color:#F59E0B;
+    color:#F58A16;
     margin-bottom:15px;
 
 }
@@ -91,20 +91,20 @@
 .category-content h4{
 
     margin-bottom:20px;
-    color:#0F172A;
+    color:#152F57;
 
 }
 
 .category-btn{
 
     display:inline-block;
-    color:#F59E0B;
+    color:#F58A16;
     font-weight:600;
 
 }
 
 .category-btn:hover{
 
-    color:#0F172A;
+    color:#152F57;
 
 }

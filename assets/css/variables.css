@@ -1,10 +1,10 @@
 :root{
-    --primary:#0F172A;
-    --secondary:#F59E0B;
+    --primary:#152F57;
+    --secondary:#F58A16;
     --light:#ffffff;
     --gray:#F8FAFC;
-    --dark:#1E293B;
-    --text:#475569;
+    --dark:#202124;
+    --text:#536274;
     --transition:0.4s ease;
     --shadow:0 10px 30px rgba(0,0,0,.08);
 }
@@ -39,3 +39,7 @@ img{
     max-width:100%;
     display:block;
 }
+
+.btn-warning,.bg-warning{background-color:var(--secondary)!important;border-color:var(--secondary)!important;color:#202124!important;}
+.btn-warning:hover,.btn-warning:focus{background-color:#cc6c0d!important;border-color:#cc6c0d!important;color:#fff!important;}
+.text-warning{color:var(--secondary)!important;}

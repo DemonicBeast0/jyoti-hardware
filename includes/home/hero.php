@@ -1,13 +1,13 @@
-<section class="hero-section" aria-label="Jyoti Hardware highlights">
+<section class="hero-section" aria-label="Jyoti Suppliers highlights">
     <div class="swiper heroSwiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <div class="hero-slide">
-                    <img src="assets/images/hero/hero-1.png" alt="Jyoti Hardware store and products">
+                    <img src="assets/images/hero/hero-1.png" alt="Jyoti Suppliers store and products">
                     <div class="hero-overlay"></div>
                     <div class="container hero-container"><div class="hero-content">
                         <span class="hero-subtitle">Welcome to</span>
-                        <h1>Jyoti Hardware <br>&amp; Suppliers</h1>
+                        <h1>Jyoti <br>Suppliers</h1>
                         <p>Nepal's trusted supplier of quality hardware, construction materials, plumbing, electrical supplies and industrial tools.</p>
                         <div class="hero-buttons"><a href="products.php" class="btn btn-warning">Explore Products</a><a href="contact.php" class="btn btn-outline-light">Make an Inquiry</a></div>
                     </div></div>

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4">
-                <h3>Jyoti Hardware &amp; Suppliers</h3>
+                <h3>Jyoti Suppliers</h3>
                 <p>Your trusted destination for premium hardware, construction materials, electrical supplies, plumbing products and industrial tools in Nepal.</p>
                 <div class="social-icons">
                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
@@ -16,11 +16,10 @@
             <div class="col-lg-3"><h5>Contact</h5><p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Damak, Nepal</p><p><a href="tel:+9779800000000"><i class="fas fa-phone" aria-hidden="true"></i> +977 9800000000</a></p><p><a href="mailto:info@jyotihardware.com"><i class="fas fa-envelope" aria-hidden="true"></i> info@jyotihardware.com</a></p></div>
         </div>
         <hr>
-        <div class="copyright">&copy; <?= date('Y'); ?> Jyoti Hardware &amp; Suppliers | Designed &amp; Developed by <strong>Pratik Majhi</strong></div>
+        <div class="copyright">&copy; <?= date('Y'); ?> Jyoti Suppliers | Designed &amp; Developed by <strong>Pratik Majhi</strong></div>
     </div>
 </footer>
-<a href="https://wa.me/9779800000000" class="whatsapp" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-<a href="tel:+9779800000000" class="call-btn" aria-label="Call us"><i class="fas fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/9779800000000" class="whatsapp" target="_blank" rel="noopener" aria-label="Chat with Jyoti Suppliers on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
 <button id="topBtn" type="button" aria-label="Back to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
 <?php if (basename($_SERVER['PHP_SELF'] ?? '') !== 'products.php'): ?>
     <?php include 'modal.php'; ?>

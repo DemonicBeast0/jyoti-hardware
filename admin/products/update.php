@@ -22,7 +22,6 @@ $name = trim($_POST['name'] ?? '');
 $price = trim($_POST['price'] ?? '');
 $category_id = trim($_POST['category_id'] ?? '');
 $brand_id = trim($_POST['brand_id'] ?? '');
-$badge = trim($_POST['badge'] ?? '');
 $status = isset($_POST['status']) ? (int) $_POST['status'] : 0;
 $stock = isset($_POST['stock']) ? (int) $_POST['stock'] : 0;
 $description = trim($_POST['description'] ?? '');
@@ -70,7 +69,7 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
 $slug = slugify($name);
 
 $stmt = $pdo->prepare(
-    'UPDATE products SET category_id = ?, brand_id = ?, name = ?, slug = ?, description = ?, image = ?, price = ?, stock = ?, badge = ?, status = ? WHERE id = ?'
+    'UPDATE products SET category_id = ?, brand_id = ?, name = ?, slug = ?, description = ?, image = ?, price = ?, stock = ?, status = ? WHERE id = ?'
 );
 $stmt->execute([
     $category_id,
@@ -81,7 +80,6 @@ $stmt->execute([
     $imagePath,
     $price,
     $stock,
-    $badge,
     $status,
     $id
 ]);

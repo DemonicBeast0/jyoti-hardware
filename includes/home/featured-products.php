@@ -28,12 +28,6 @@ Quality products from trusted manufacturers.
 
 <div class="product-image">
 
-<span class="badge">
-
-<?= $product['badge']; ?>
-
-</span>
-
 <img src="<?= $product['image']; ?>">
 
 </div>

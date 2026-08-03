@@ -4,7 +4,7 @@ $testimonials = [
     [
         "name" => "Ramesh Shrestha",
         "role" => "Construction Contractor",
-        "message" => "Jyoti Hardware always provides genuine products and timely delivery.",
+        "message" => "Jyoti Suppliers always provides genuine products and timely delivery.",
         "image" => "assets/images/testimonials/client1.jpg"
     ],
     [

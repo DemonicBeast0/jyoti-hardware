@@ -8,7 +8,7 @@
 
                 <img src="assets/images/about/store.jpg"
                      class="img-fluid rounded-4 shadow"
-                     alt="Jyoti Hardware Store">
+                     alt="Jyoti Suppliers store">
 
             </div>
 
@@ -26,7 +26,7 @@
 
                     <p class="text-muted mb-4">
 
-                        Jyoti Hardware & Suppliers provides genuine hardware,
+                        Jyoti Suppliers provides genuine hardware,
                         construction materials, plumbing supplies, electrical
                         products and industrial tools from trusted brands.
                         We are committed to delivering quality products,

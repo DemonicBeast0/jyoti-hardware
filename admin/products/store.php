@@ -21,7 +21,6 @@ $name = trim($_POST['name'] ?? '');
 $price = trim($_POST['price'] ?? '');
 $category_id = trim($_POST['category_id'] ?? '');
 $brand_id = trim($_POST['brand_id'] ?? '');
-$badge = trim($_POST['badge'] ?? '');
 $status = isset($_POST['status']) ? (int) $_POST['status'] : 0;
 $description = trim($_POST['description'] ?? '');
 
@@ -54,7 +53,7 @@ $imagePath = 'uploads/products/' . $filename;
 $slug = slugify($name);
 
 $stmt = $pdo->prepare(
-    'INSERT INTO products (category_id, brand_id, name, slug, description, image, price, stock, badge, featured, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    'INSERT INTO products (category_id, brand_id, name, slug, description, image, price, stock, featured, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
 );
 $stmt->execute([
     $category_id,
@@ -64,8 +63,6 @@ $stmt->execute([
     $description,
     $imagePath,
     $price,
-    0,
-    $badge,
     0,
     $status
 ]);

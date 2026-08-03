@@ -1,7 +1,7 @@
 <div class="sidebar">
 
     <div class="logo">
-        Jyoti Hardware
+        Jyoti Suppliers
     </div>
 
     <ul>

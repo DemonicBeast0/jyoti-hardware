@@ -21,7 +21,7 @@ include 'includes/navbar.php';
 
                 <img src="assets/images/about/store.jpg"
                      class="img-fluid rounded shadow"
-                     alt="Jyoti Hardware">
+                     alt="Jyoti Suppliers">
 
             </div>
 
@@ -32,11 +32,11 @@ include 'includes/navbar.php';
                 </span>
 
                 <h2 class="fw-bold mb-4">
-                    Jyoti Hardware & Suppliers
+                    Jyoti Suppliers
                 </h2>
 
                 <p>
-                    Jyoti Hardware & Suppliers is committed to providing
+                    Jyoti Suppliers is committed to providing
                     high-quality construction materials, industrial tools,
                     plumbing supplies, electrical accessories, paints,
                     and hardware products throughout Nepal.

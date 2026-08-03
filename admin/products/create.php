@@ -135,20 +135,6 @@ enctype="multipart/form-data">
 
     </div>
 
-    <!-- Badge -->
-
-    <div class="col-md-6 mb-3">
-
-        <label class="form-label">Badge</label>
-
-        <input
-            type="text"
-            name="badge"
-            class="form-control"
-            placeholder="Best Seller">
-
-    </div>
-
     <!-- Status -->
 
     <div class="col-md-6 mb-3">

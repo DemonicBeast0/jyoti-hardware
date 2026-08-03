@@ -47,7 +47,6 @@ CREATE TABLE IF NOT EXISTS `products` (
   `image` VARCHAR(255) DEFAULT NULL,
   `price` DECIMAL(10,2) NOT NULL DEFAULT 0.00,
   `stock` INT NOT NULL DEFAULT 0,
-  `badge` VARCHAR(50) DEFAULT NULL,
   `featured` TINYINT(1) NOT NULL DEFAULT 0,
   `status` TINYINT(1) NOT NULL DEFAULT 1,
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -120,3 +119,4 @@ ALTER TABLE `quotes` ADD INDEX IF NOT EXISTS `idx_quotes_status` (`status`);
 ALTER TABLE `products` ADD INDEX IF NOT EXISTS `idx_products_status` (`status`);
 ALTER TABLE `categories` ADD INDEX IF NOT EXISTS `idx_categories_status` (`status`);
 ALTER TABLE `brands` ADD INDEX IF NOT EXISTS `idx_brands_status` (`status`);
+ALTER TABLE `products` DROP COLUMN IF EXISTS `badge`;

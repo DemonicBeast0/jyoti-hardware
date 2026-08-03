@@ -55,12 +55,6 @@ class="img-fluid rounded shadow">
 
 <div class="col-lg-6">
 
-<span class="badge bg-warning text-dark mb-3">
-
-<?= htmlspecialchars($product['badge']); ?>
-
-</span>
-
 <h2>
 
 <?= htmlspecialchars($product['name']); ?>
@@ -96,24 +90,6 @@ Rs. <?= number_format($product['price'],2); ?>
 <?= nl2br(htmlspecialchars($product['description'])); ?>
 
 </p>
-
-<?php if($product['stock']>0): ?>
-
-<span class="badge bg-success">
-
-In Stock
-
-</span>
-
-<?php else: ?>
-
-<span class="badge bg-danger">
-
-Out of Stock
-
-</span>
-
-<?php endif; ?>
 
 <br><br>
 
