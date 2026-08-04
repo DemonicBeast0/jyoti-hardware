@@ -2,7 +2,7 @@
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
-$currentPage = basename($_SERVER['PHP_SELF']);
+$currentPage = basename($_SERVER["PHP_SELF"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,17 +67,25 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
     <!-- Main CSS -->
     <link rel="stylesheet"
-        href="assets/css/style.css?v=<?= filemtime(__DIR__ . '/../assets/css/style.css'); ?>">
+        href="assets/css/style.css?v=<?= filemtime(
+            __DIR__ . "/../assets/css/style.css",
+        ) ?>">
 
     <!-- Load header styles last so cached imports cannot override its layout. -->
     <link rel="stylesheet"
-        href="assets/css/navbar.css?v=<?= filemtime(__DIR__ . '/../assets/css/navbar.css'); ?>">
+        href="assets/css/navbar.css?v=<?= filemtime(
+            __DIR__ . "/../assets/css/navbar.css",
+        ) ?>">
 
     <link rel="stylesheet"
-        href="assets/css/hero.css?v=<?= filemtime(__DIR__ . '/../assets/css/hero.css'); ?>">
+        href="assets/css/hero.css?v=<?= filemtime(
+            __DIR__ . "/../assets/css/hero.css",
+        ) ?>">
 
     <link rel="stylesheet"
-        href="assets/css/brands.css?v=<?= filemtime(__DIR__ . '/../assets/css/brands.css'); ?>">
+        href="assets/css/brands.css?v=<?= filemtime(
+            __DIR__ . "/../assets/css/brands.css",
+        ) ?>">
 
 </head>
 

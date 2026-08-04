@@ -1,7 +1,7 @@
 <?php
-require_once 'config/brands.php';
-include 'includes/header.php';
-include 'includes/navbar.php';
+require_once "config/brands.php";
+include "includes/header.php";
+include "includes/navbar.php";
 ?>
 
 <section class="page-header">
@@ -24,12 +24,16 @@ include 'includes/navbar.php';
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <article class="brand-card h-100">
                         <div class="brand-logo-wrap">
-                            <img src="<?= htmlspecialchars($brand['logo']); ?>"
-                                 alt="<?= htmlspecialchars($brand['name']); ?> logo">
+                            <img src="<?= htmlspecialchars($brand["logo"]) ?>"
+                                 alt="<?= htmlspecialchars(
+                                     $brand["name"],
+                                 ) ?> logo">
                         </div>
                         <div class="brand-card-body">
-                            <h2><?= htmlspecialchars($brand['name']); ?></h2>
-                            <p><?= htmlspecialchars($brand['description']); ?></p>
+                            <h2><?= htmlspecialchars($brand["name"]) ?></h2>
+                            <p><?= htmlspecialchars(
+                                $brand["description"],
+                            ) ?></p>
                         </div>
                     </article>
                 </div>
@@ -38,4 +42,4 @@ include 'includes/navbar.php';
     </div>
 </section>
 
-<?php include 'includes/footer.php'; ?>
+<?php include "includes/footer.php"; ?>

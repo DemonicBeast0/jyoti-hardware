@@ -1,16 +1,16 @@
 <?php
 
-require_once 'config/database.php';
+require_once "config/database.php";
 
-if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+if (!isset($_GET["id"]) || !is_numeric($_GET["id"])) {
     header("Location: products.php");
-    exit;
+    exit();
 }
 
-include 'includes/header.php';
-include 'includes/navbar.php';
+include "includes/header.php";
+include "includes/navbar.php";
 
-$id = (int)$_GET['id'];
+$id = (int) $_GET["id"];
 
 $sql = "
 SELECT
@@ -33,9 +33,8 @@ $stmt->execute([$id]);
 $product = $stmt->fetch();
 
 if (!$product) {
-
     header("Location: products.php");
-    exit;
+    exit();
 }
 ?>
 
@@ -48,7 +47,7 @@ if (!$product) {
 <div class="col-lg-6">
 
 <img
-src="<?= htmlspecialchars($product['image']); ?>"
+src="<?= htmlspecialchars($product["image"]) ?>"
 class="img-fluid rounded shadow">
 
 </div>
@@ -57,7 +56,7 @@ class="img-fluid rounded shadow">
 
 <h2>
 
-<?= htmlspecialchars($product['name']); ?>
+<?= htmlspecialchars($product["name"]) ?>
 
 </h2>
 
@@ -65,7 +64,7 @@ class="img-fluid rounded shadow">
 
 <strong>Brand :</strong>
 
-<?= htmlspecialchars($product['brand_name']); ?>
+<?= htmlspecialchars($product["brand_name"]) ?>
 
 </p>
 
@@ -73,7 +72,7 @@ class="img-fluid rounded shadow">
 
 <strong>Category :</strong>
 
-<?= htmlspecialchars($product['category_name']); ?>
+<?= htmlspecialchars($product["category_name"]) ?>
 
 </p>
 
@@ -81,31 +80,33 @@ class="img-fluid rounded shadow">
 
 <strong>Price :</strong>
 
-Rs. <?= number_format($product['price'],2); ?>
+Rs. <?= number_format($product["price"], 2) ?>
 
 </p>
 
 <p>
 
-<?= nl2br(htmlspecialchars($product['description'])); ?>
+<?= nl2br(htmlspecialchars($product["description"])) ?>
 
 </p>
 
 <br><br>
 
 <a
-href="contact.php?product_id=<?= urlencode($product['id']); ?>"
+href="contact.php?product_id=<?= urlencode($product["id"]) ?>"
 class="btn btn-warning btn-lg">
 
 Inquire About This Product
 
 </a>
 
-<?php if ($product['stock'] > 0): ?>
+<?php if ($product["stock"] > 0): ?>
 <form action="cart-action.php" method="post" class="d-inline">
     <input type="hidden" name="action" value="add">
-    <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
-    <input type="hidden" name="return_to" value="product-details.php?id=<?= $product['id']; ?>">
+    <input type="hidden" name="product_id" value="<?= $product["id"] ?>">
+    <input type="hidden" name="return_to" value="product-details.php?id=<?= $product[
+        "id"
+    ] ?>">
     <button type="submit" class="btn btn-outline-dark btn-lg">Add to Cart</button>
 </form>
 <?php endif; ?>
@@ -127,7 +128,6 @@ Back to Products
 </section>
 
 <?php
-
 $related = $pdo->prepare("
 SELECT *
 FROM products
@@ -136,13 +136,9 @@ AND id!=?
 LIMIT 4
 ");
 
-$related->execute([
-$product['category_id'],
-$product['id']
-]);
+$related->execute([$product["category_id"], $product["id"]]);
 
 $relatedProducts = $related->fetchAll();
-
 ?>
 
 <section class="py-5 bg-light">
@@ -157,14 +153,14 @@ Related Products
 
 <div class="row">
 
-<?php foreach($relatedProducts as $item): ?>
+<?php foreach ($relatedProducts as $item): ?>
 
 <div class="col-md-3">
 
 <div class="card h-100 shadow-sm">
 
 <img
-src="<?= htmlspecialchars($item['image']); ?>"
+src="<?= htmlspecialchars($item["image"]) ?>"
 class="card-img-top"
 style="height:200px;object-fit:cover;">
 
@@ -172,12 +168,12 @@ style="height:200px;object-fit:cover;">
 
 <h6>
 
-<?= htmlspecialchars($item['name']); ?>
+<?= htmlspecialchars($item["name"]) ?>
 
 </h6>
 
 <a
-href="product-details.php?id=<?= $item['id']; ?>"
+href="product-details.php?id=<?= $item["id"] ?>"
 class="btn btn-dark btn-sm">
 
 View Details
@@ -198,4 +194,4 @@ View Details
 
 </section>
 
-<?php include 'includes/footer.php'; ?>
+<?php include "includes/footer.php"; ?>

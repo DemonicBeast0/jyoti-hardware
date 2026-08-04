@@ -6,7 +6,7 @@
  * set ESEWA_ENV=live plus your merchant credentials before accepting payments.
  */
 return [
-    'environment' => getenv('ESEWA_ENV') ?: 'test',
-    'product_code' => getenv('ESEWA_PRODUCT_CODE') ?: 'EPAYTEST',
-    'secret_key' => getenv('ESEWA_SECRET_KEY') ?: '8gBm/:&EnhH.1/q',
+    "environment" => getenv("ESEWA_ENV") ?: "test",
+    "product_code" => getenv("ESEWA_PRODUCT_CODE") ?: "EPAYTEST",
+    "secret_key" => getenv("ESEWA_SECRET_KEY") ?: "8gBm/:&EnhH.1/q",
 ];

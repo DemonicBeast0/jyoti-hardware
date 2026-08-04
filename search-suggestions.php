@@ -1,12 +1,12 @@
 <?php
-require_once 'config/database.php';
+require_once "config/database.php";
 
-header('Content-Type: application/json; charset=utf-8');
+header("Content-Type: application/json; charset=utf-8");
 
-$query = trim($_GET['q'] ?? '');
+$query = trim($_GET["q"] ?? "");
 if (mb_strlen($query) < 2) {
     echo json_encode([]);
-    exit;
+    exit();
 }
 
 $stmt = $pdo->prepare(
@@ -15,7 +15,7 @@ $stmt = $pdo->prepare(
      LEFT JOIN brands ON products.brand_id = brands.id
      WHERE products.status = 1 AND products.name LIKE ?
      ORDER BY products.name ASC
-     LIMIT 6'
+     LIMIT 6',
 );
-$stmt->execute(['%' . $query . '%']);
+$stmt->execute(["%" . $query . "%"]);
 echo json_encode($stmt->fetchAll(), JSON_UNESCAPED_SLASHES);

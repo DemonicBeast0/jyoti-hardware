@@ -1,6 +1,6 @@
 <?php
-include 'includes/header.php';
-include 'includes/navbar.php';
+include "includes/header.php";
+include "includes/navbar.php";
 ?>
 
 <section class="page-header py-5 bg-dark text-white">
@@ -42,4 +42,4 @@ include 'includes/navbar.php';
     </div>
 </section>
 
-<?php include 'includes/footer.php'; ?>
+<?php include "includes/footer.php"; ?>

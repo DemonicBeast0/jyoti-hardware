@@ -2,109 +2,81 @@
    CATEGORY SECTION
 =================================== */
 
-.categories{
-
-    padding:100px 0;
-    background:#F8FAFC;
-
+.categories {
+  padding: 100px 0;
+  background: #f8fafc;
 }
 
-.section-title span{
-
-    color:#F58A16;
-    font-weight:600;
-    letter-spacing:2px;
-
+.section-title span {
+  color: #f58a16;
+  font-weight: 600;
+  letter-spacing: 2px;
 }
 
-.section-title h2{
-
-    font-size:45px;
-    margin-top:10px;
-    margin-bottom:15px;
-    color:#152F57;
-
+.section-title h2 {
+  font-size: 45px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  color: #152f57;
 }
 
-.section-title p{
-
-    max-width:650px;
-    margin:auto;
-    color:#64748B;
-
+.section-title p {
+  max-width: 650px;
+  margin: auto;
+  color: #64748b;
 }
 
-.category-card{
-
-    background:#fff;
-    border-radius:18px;
-    overflow:hidden;
-    transition:.4s;
-    box-shadow:0 12px 35px rgba(0,0,0,.08);
-    height:100%;
-
+.category-card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: 0.4s;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  height: 100%;
 }
 
-.category-card:hover{
-
-    transform:translateY(-10px);
-
+.category-card:hover {
+  transform: translateY(-10px);
 }
 
-.category-image{
-
-    overflow:hidden;
-    height:240px;
-
+.category-image {
+  overflow: hidden;
+  height: 240px;
 }
 
-.category-image img{
-
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:.6s;
-
+.category-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.6s;
 }
 
-.category-card:hover img{
-
-    transform:scale(1.1);
-
+.category-card:hover img {
+  transform: scale(1.1);
 }
 
-.category-content{
-
-    padding:30px;
-    text-align:center;
-
+.category-content {
+  padding: 30px;
+  text-align: center;
 }
 
-.category-content i{
-
-    font-size:40px;
-    color:#F58A16;
-    margin-bottom:15px;
-
+.category-content i {
+  font-size: 40px;
+  color: #f58a16;
+  margin-bottom: 15px;
 }
 
-.category-content h4{
-
-    margin-bottom:20px;
-    color:#152F57;
-
+.category-content h4 {
+  margin-bottom: 20px;
+  color: #152f57;
 }
 
-.category-btn{
-
-    display:inline-block;
-    color:#F58A16;
-    font-weight:600;
-
+.category-btn {
+  display: inline-block;
+  color: #f58a16;
+  font-weight: 600;
 }
 
-.category-btn:hover{
-
-    color:#152F57;
-
+.category-btn:hover {
+  color: #152f57;
 }

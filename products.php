@@ -1,16 +1,16 @@
 <?php
-require_once 'config/database.php';
+require_once "config/database.php";
 
-include 'includes/header.php';
-include 'includes/navbar.php';
+include "includes/header.php";
+include "includes/navbar.php";
 
 /* ==========================================
    GET FILTER VALUES
 ========================================== */
 
-$search   = trim($_GET['search'] ?? '');
-$category = trim($_GET['category'] ?? '');
-$brand    = trim($_GET['brand'] ?? '');
+$search = trim($_GET["search"] ?? "");
+$category = trim($_GET["category"] ?? "");
+$brand = trim($_GET["brand"] ?? "");
 
 /* ==========================================
    PRODUCT QUERY
@@ -33,8 +33,7 @@ $params = [];
 
 /* Search */
 
-if ($search != '') {
-
+if ($search != "") {
     $sql .= " AND (
         products.name LIKE ?
         OR brands.name LIKE ?
@@ -46,8 +45,7 @@ if ($search != '') {
 
 /* Category */
 
-if ($category != '') {
-
+if ($category != "") {
     $sql .= " AND products.category_id = ?";
 
     $params[] = $category;
@@ -55,8 +53,7 @@ if ($category != '') {
 
 /* Brand */
 
-if ($brand != '') {
-
+if ($brand != "") {
     $sql .= " AND products.brand_id = ?";
 
     $params[] = $brand;
@@ -94,7 +91,6 @@ ORDER BY name ASC
 ");
 
 $brands = $brandStmt->fetchAll();
-
 ?>
 
 <!-- ==========================================
@@ -184,13 +180,13 @@ All Categories
 
 </option>
 
-<?php foreach($categories as $cat): ?>
+<?php foreach ($categories as $cat): ?>
 
 <option
-value="<?= $cat['id']; ?>"
-<?= ($category==$cat['id'])?'selected':''; ?>>
+value="<?= $cat["id"] ?>"
+<?= $category == $cat["id"] ? "selected" : "" ?>>
 
-<?= htmlspecialchars($cat['name']); ?>
+<?= htmlspecialchars($cat["name"]) ?>
 
 </option>
 
@@ -218,13 +214,13 @@ All Brands
 
 </option>
 
-<?php foreach($brands as $b): ?>
+<?php foreach ($brands as $b): ?>
 
 <option
-value="<?= $b['id']; ?>"
-<?= ($brand==$b['id'])?'selected':''; ?>>
+value="<?= $b["id"] ?>"
+<?= $brand == $b["id"] ? "selected" : "" ?>>
 
-<?= htmlspecialchars($b['name']); ?>
+<?= htmlspecialchars($b["name"]) ?>
 
 </option>
 
@@ -272,7 +268,7 @@ PRODUCT GRID
 
 <h4>
 
-<?= count($products); ?>
+<?= count($products) ?>
 
 Products Found
 
@@ -282,9 +278,9 @@ Products Found
 
 <div class="row g-4">
 
-<?php if(count($products)): ?>
+<?php if (count($products)): ?>
 
-<?php foreach($products as $product): ?>
+<?php foreach ($products as $product): ?>
 
 <div class="col-lg-4 col-md-6">
 
@@ -293,8 +289,8 @@ Products Found
         <div class="position-relative">
 
             <img
-                src="<?= htmlspecialchars($product['image']); ?>"
-                alt="<?= htmlspecialchars($product['name']); ?>"
+                src="<?= htmlspecialchars($product["image"]) ?>"
+                alt="<?= htmlspecialchars($product["name"]) ?>"
                 class="card-img-top"
                 style="height:250px; object-fit:cover;">
 
@@ -304,33 +300,35 @@ Products Found
 
             <small class="text-muted">
 
-                <?= htmlspecialchars($product['brand_name']); ?>
+                <?= htmlspecialchars($product["brand_name"]) ?>
 
             </small>
 
             <h5 class="mt-2 fw-bold">
 
-                <?= htmlspecialchars($product['name']); ?>
+                <?= htmlspecialchars($product["name"]) ?>
 
             </h5>
 
             <p class="text-muted mb-2">
 
-                <?= htmlspecialchars($product['category_name']); ?>
+                <?= htmlspecialchars($product["category_name"]) ?>
 
             </p>
 
             <p class="small text-secondary flex-grow-1">
 
-                <?= htmlspecialchars(substr($product['description'],0,90)); ?>...
+                <?= htmlspecialchars(
+                    substr($product["description"], 0, 90),
+                ) ?>...
 
             </p>
 
-            <?php if($product['price'] > 0): ?>
+            <?php if ($product["price"] > 0): ?>
 
             <h5 class="text-warning fw-bold">
 
-                Rs. <?= number_format($product['price'],2); ?>
+                Rs. <?= number_format($product["price"], 2) ?>
 
             </h5>
 
@@ -339,17 +337,19 @@ Products Found
             <div class="d-grid gap-2 mt-3">
 
                 <a
-                    href="product-details.php?id=<?= $product['id']; ?>"
+                    href="product-details.php?id=<?= $product["id"] ?>"
                     class="btn btn-dark">
 
                     View Details
 
                 </a>
 
-                <?php if ($product['stock'] > 0): ?>
+                <?php if ($product["stock"] > 0): ?>
                 <form action="cart-action.php" method="post">
                     <input type="hidden" name="action" value="add">
-                    <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+                    <input type="hidden" name="product_id" value="<?= $product[
+                        "id"
+                    ] ?>">
                     <input type="hidden" name="return_to" value="products.php">
                     <button type="submit" class="btn btn-outline-dark btn-sm w-100"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
                 </form>
@@ -405,4 +405,4 @@ Show All Products
 
 </section>
 
-<?php include 'includes/footer.php'; ?>
+<?php include "includes/footer.php"; ?>

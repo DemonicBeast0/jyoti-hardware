@@ -1,4 +1,6 @@
-<?php include 'includes/header.php'; include 'includes/navbar.php'; ?>
+<?php include "includes/header.php";
+include "includes/navbar.php";
+?>
 <section class="page-header"><div class="container"><h1>Our Services</h1><p>Reliable hardware supply support for homes, businesses, and construction projects.</p></div></section>
 <section class="py-5"><div class="container"><div class="row g-4"><div class="col-md-4"><article class="feature-box"><i class="fas fa-boxes-stacked"></i><h2 class="h4">Product Sourcing</h2><p>Find quality tools, fittings, electrical supplies, paints, and construction materials in one place.</p></article></div><div class="col-md-4"><article class="feature-box"><i class="fas fa-file-invoice"></i><h2 class="h4">Bulk Orders</h2><p>Get tailored pricing and product recommendations for your project or business order.</p><a href="contact.php" class="btn btn-warning">Make an Inquiry</a></article></div><div class="col-md-4"><article class="feature-box"><i class="fas fa-headset"></i><h2 class="h4">Product Guidance</h2><p>Our team helps you choose practical and dependable materials for the job at hand.</p><a href="contact.php" class="btn btn-outline-dark">Contact Us</a></article></div></div></div></section>
-<?php include 'includes/footer.php'; ?>
+<?php include "includes/footer.php"; ?>

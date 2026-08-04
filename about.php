@@ -1,6 +1,6 @@
 <?php
-include 'includes/header.php';
-include 'includes/navbar.php';
+include "includes/header.php";
+include "includes/navbar.php";
 ?>
 
 <!-- Page Header -->
@@ -183,4 +183,4 @@ Contact Us
 
 </section>
 
-<?php include 'includes/footer.php'; ?>
+<?php include "includes/footer.php"; ?>

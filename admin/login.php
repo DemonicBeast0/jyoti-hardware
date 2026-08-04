@@ -1,14 +1,13 @@
 <?php
 session_start();
 
-require_once '../config/database.php';
+require_once "../config/database.php";
 
-$error = '';
+$error = "";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $username = trim($_POST["username"]);
+    $password = trim($_POST["password"]);
 
     $stmt = $pdo->prepare("
         SELECT *
@@ -21,26 +20,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $passwordIsValid = $admin && (password_verify($password, $admin['password']) || hash_equals($admin['password'], $password));
+    $passwordIsValid =
+        $admin &&
+        (password_verify($password, $admin["password"]) ||
+            hash_equals($admin["password"], $password));
 
     if ($passwordIsValid) {
+        // Upgrade legacy plaintext credentials after the next successful login.
+        if (!password_get_info($admin["password"])["algo"]) {
+            $pdo->prepare(
+                "UPDATE admins SET password = ? WHERE id = ?",
+            )->execute([
+                password_hash($password, PASSWORD_DEFAULT),
+                $admin["id"],
+            ]);
+        }
 
-    // Upgrade legacy plaintext credentials after the next successful login.
-    if (!password_get_info($admin['password'])['algo']) {
-        $pdo->prepare('UPDATE admins SET password = ? WHERE id = ?')->execute([password_hash($password, PASSWORD_DEFAULT), $admin['id']]);
+        $_SESSION["admin_id"] = $admin["id"];
+        $_SESSION["admin_name"] = $admin["fullname"];
+
+        header("Location: dashboard.php");
+        exit();
+    } else {
+        $error = "Invalid username or password.";
     }
-
-    $_SESSION['admin_id'] = $admin['id'];
-    $_SESSION['admin_name'] = $admin['fullname'];
-
-    header("Location: dashboard.php");
-    exit;
-
-} else {
-
-    $error = "Invalid username or password.";
-
-}
 }
 ?>
 
@@ -112,11 +115,11 @@ Admin Login
 
 </h2>
 
-<?php if($error): ?>
+<?php if ($error): ?>
 
 <div class="alert alert-danger">
 
-<?= htmlspecialchars($error); ?>
+<?= htmlspecialchars($error) ?>
 
 </div>
 
