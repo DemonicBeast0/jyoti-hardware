@@ -1,6 +1,74 @@
 document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     const topBtn = document.getElementById('topBtn');
+    const currentUrl = new URL(window.location.href);
+    const savedScroll = Number.parseInt(currentUrl.searchParams.get('scroll'), 10);
+
+    if (Number.isFinite(savedScroll) && savedScroll > 0) {
+        currentUrl.searchParams.delete('scroll');
+        history.replaceState(null, '', `${currentUrl.pathname}${currentUrl.search}${currentUrl.hash}`);
+        window.requestAnimationFrame(() => window.scrollTo(0, savedScroll));
+    }
+
+    document.querySelectorAll('form[action="cart-action.php"]').forEach((form) => {
+        form.addEventListener('submit', (event) => {
+            const returnTo = form.querySelector('input[name="return_to"]');
+            if (!returnTo) return;
+
+            if (event.submitter?.hasAttribute('data-place-order')) {
+                returnTo.value = 'quote.php';
+                return;
+            }
+
+            const returnUrl = new URL(window.location.href);
+            returnUrl.searchParams.set('scroll', String(Math.round(window.scrollY)));
+            returnTo.value = `${returnUrl.pathname.split('/').pop()}${returnUrl.search}`;
+
+            if (form.querySelector('input[name="action"]')?.value !== 'add') return;
+
+            event.preventDefault();
+            const button = form.querySelector('button[type="submit"]');
+            if (button) button.disabled = true;
+
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'X-Requested-With': 'XMLHttpRequest', Accept: 'application/json' }
+            })
+                .then((response) => {
+                    if (!response.ok) throw new Error('Unable to add item to cart');
+                    return response.json();
+                })
+                .then(({ cart_count: cartCount }) => {
+                    const cartLabel = document.querySelector('.cart-link .cart-count');
+                    if (cartLabel) cartLabel.textContent = cartCount > 0 ? `Cart (${cartCount})` : 'Cart';
+                })
+                .catch(() => form.submit())
+                .finally(() => {
+                    if (button) button.disabled = false;
+                });
+        });
+    });
+
+    const cartQuantities = document.querySelectorAll('[data-cart-quantity]');
+    const cartTotal = document.querySelector('[data-cart-total]');
+    const formatCurrency = (amount) => amount.toLocaleString('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+
+    const updateCartAmounts = () => {
+        let total = 0;
+        cartQuantities.forEach((quantityInput) => {
+            const quantity = Math.max(0, Number(quantityInput.value) || 0);
+            const subtotal = quantity * Number(quantityInput.dataset.price);
+            quantityInput.closest('tr').querySelector('[data-cart-subtotal]').textContent = formatCurrency(subtotal);
+            total += subtotal;
+        });
+        if (cartTotal) cartTotal.textContent = formatCurrency(total);
+    };
+
+    cartQuantities.forEach((quantityInput) => quantityInput.addEventListener('input', updateCartAmounts));
 
     const updateScrollState = () => {
         const isScrolled = window.scrollY > 80;

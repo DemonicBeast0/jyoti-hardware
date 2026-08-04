@@ -85,6 +85,23 @@ CREATE TABLE IF NOT EXISTS `quotes` (
   CONSTRAINT `fk_quotes_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `quote_id` INT UNSIGNED NOT NULL,
+  `transaction_uuid` VARCHAR(100) NOT NULL,
+  `amount` DECIMAL(10,2) NOT NULL,
+  `payment_method` VARCHAR(30) NOT NULL DEFAULT 'esewa',
+  `payment_status` ENUM('pending', 'paid', 'failed') NOT NULL DEFAULT 'pending',
+  `response_data` LONGTEXT DEFAULT NULL,
+  `paid_at` DATETIME DEFAULT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_orders_transaction_uuid` (`transaction_uuid`),
+  UNIQUE KEY `uq_orders_quote` (`quote_id`),
+  KEY `idx_orders_payment_status` (`payment_status`),
+  CONSTRAINT `fk_orders_quote` FOREIGN KEY (`quote_id`) REFERENCES `quotes` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- Minimal catalog data for a new installation. Existing records are preserved.
 INSERT INTO `admins` (`fullname`, `username`, `password`)
 SELECT 'Administrator', 'admin', '$2y$10$esOV8MhtOlT.PpJAO.XOXOfJ5/btSZBA4L4ievtt7pVj65BogdUWm'

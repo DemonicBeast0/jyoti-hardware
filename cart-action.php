@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $returnTo = $_POST['return_to'] ?? 'cart.php';
-if (!preg_match('/^[a-z0-9_-]+\.php(?:\?[a-z0-9=&_%.-]+)?$/i', $returnTo)) {
+if (!preg_match('/^[a-z0-9_-]+\.php(?:\?[a-z0-9=&_%.+-]+)?$/i', $returnTo)) {
     $returnTo = 'cart.php';
 }
 
@@ -46,6 +46,12 @@ if ($action === 'add') {
     }
 } elseif ($action === 'clear') {
     $_SESSION['cart'] = [];
+}
+
+if (($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'XMLHttpRequest') {
+    header('Content-Type: application/json');
+    echo json_encode(['cart_count' => array_sum($_SESSION['cart'])]);
+    exit;
 }
 
 header('Location: ' . $returnTo);

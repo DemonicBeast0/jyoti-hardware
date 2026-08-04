@@ -46,7 +46,7 @@ $navCategories = $pdo->query('SELECT id, name FROM categories WHERE status = 1 O
                     <div id="searchSuggestions" class="search-suggestions" role="listbox" hidden></div>
                 </div>
                 <a href="cart.php" class="cart-link <?= $currentPage === 'cart.php' ? 'active' : ''; ?>" aria-label="View cart">
-                    <i class="fas fa-shopping-cart" aria-hidden="true"></i><span>Cart<?php if ($cartCount > 0): ?> (<?= $cartCount; ?>)<?php endif; ?></span>
+                    <i class="fas fa-shopping-cart" aria-hidden="true"></i><span class="cart-count">Cart<?php if ($cartCount > 0): ?> (<?= $cartCount; ?>)<?php endif; ?></span>
                 </a>
                 <a href="contact.php" class="nav-inquiry d-none d-xxl-inline-flex"><i class="fas fa-paper-plane" aria-hidden="true"></i> Inquiry</a>
             </div>
