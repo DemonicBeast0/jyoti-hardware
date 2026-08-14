@@ -32,21 +32,49 @@ if ($action === "add") {
         }
     }
 } elseif (
-    $action === "update" &&
+    ($action === "update" || $action === "checkout") &&
     isset($_POST["quantity"]) &&
     is_array($_POST["quantity"])
 ) {
+    $requestedQuantities = [];
     foreach ($_POST["quantity"] as $id => $quantity) {
         $id = filter_var($id, FILTER_VALIDATE_INT);
         $quantity = filter_var($quantity, FILTER_VALIDATE_INT);
-        if (!$id) {
+        if (!$id || $quantity === false) {
             continue;
         }
-        if (!$quantity || $quantity < 1) {
-            unset($_SESSION["cart"][$id]);
-        } else {
-            $_SESSION["cart"][$id] = min($quantity, 99);
+        $requestedQuantities[$id] = max(0, $quantity);
+    }
+
+    $removeId = filter_input(INPUT_POST, "remove_product_id", FILTER_VALIDATE_INT);
+    if ($removeId) {
+        unset($_SESSION["cart"][$removeId], $requestedQuantities[$removeId]);
+    }
+
+    if ($requestedQuantities) {
+        $placeholders = implode(",", array_fill(0, count($requestedQuantities), "?"));
+        $stmt = $pdo->prepare(
+            "SELECT id, stock FROM products WHERE status = 1 AND id IN ($placeholders)",
+        );
+        $stmt->execute(array_keys($requestedQuantities));
+        $availableStock = [];
+        foreach ($stmt->fetchAll() as $product) {
+            $availableStock[(int) $product["id"]] = (int) $product["stock"];
         }
+
+        foreach ($requestedQuantities as $id => $quantity) {
+            $stock = $availableStock[$id] ?? 0;
+            if ($quantity < 1 || $stock < 1) {
+                unset($_SESSION["cart"][$id]);
+                continue;
+            }
+            $_SESSION["cart"][$id] = min($quantity, $stock);
+        }
+    }
+
+    if ($action === "checkout") {
+        header("Location: quote.php");
+        exit();
     }
 } elseif ($action === "remove") {
     $id = filter_input(INPUT_POST, "product_id", FILTER_VALIDATE_INT);

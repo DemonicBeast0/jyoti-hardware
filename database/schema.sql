@@ -129,6 +129,9 @@ SELECT 'Makita', 1 WHERE NOT EXISTS (SELECT 1 FROM `brands` WHERE `name` = 'Maki
 INSERT INTO `brands` (`name`, `status`)
 SELECT 'Stanley', 1 WHERE NOT EXISTS (SELECT 1 FROM `brands` WHERE `name` = 'Stanley');
 
+-- Adds the supplied plumbing and water-storage photo catalog to new installations.
+SOURCE database/catalog-images.sql;
+
 -- Upgrades an existing installation without changing or deleting any data.
 ALTER TABLE `quotes` ADD COLUMN IF NOT EXISTS `product_id` INT UNSIGNED DEFAULT NULL AFTER `id`;
 ALTER TABLE `quotes` ADD INDEX IF NOT EXISTS `idx_quotes_product` (`product_id`);

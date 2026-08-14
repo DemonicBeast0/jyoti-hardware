@@ -10,13 +10,13 @@ if ($cart) {
     $ids = array_map("intval", array_keys($cart));
     $placeholders = implode(",", array_fill(0, count($ids), "?"));
     $stmt = $pdo->prepare(
-        "SELECT id, name, image, price, stock FROM products WHERE status = 1 AND id IN ($placeholders)",
+        "SELECT id, name, image, price, stock FROM products WHERE status = 1 AND stock > 0 AND id IN ($placeholders)",
     );
     $stmt->execute($ids);
     foreach ($stmt->fetchAll() as $product) {
         $product["quantity"] = min(
             (int) $cart[$product["id"]],
-            max(1, (int) $product["stock"]),
+            (int) $product["stock"],
         );
         $product["subtotal"] = $product["price"] * $product["quantity"];
         $total += $product["subtotal"];
@@ -56,15 +56,14 @@ if ($cart) {
 ) ?>" style="max-width:90px"></td><td>Rs. <span data-cart-subtotal><?= number_format(
     $item["subtotal"],
     2,
-) ?></span></td><td><button class="btn btn-outline-danger btn-sm" name="action" value="remove" formaction="cart-action.php" formmethod="post" onclick="this.form.product_id.value='<?= $item[
+) ?></span></td><td><button class="btn btn-outline-danger btn-sm" type="submit" name="remove_product_id" value="<?= $item[
     "id"
-] ?>'">Remove</button></td></tr><?php endforeach; ?>
+] ?>">Remove</button></td></tr><?php endforeach; ?>
         </tbody></table></div>
-        <input type="hidden" name="product_id" value="">
         <div class="d-flex flex-wrap justify-content-between gap-3 align-items-center"><button class="btn btn-outline-dark" type="submit">Update Cart</button><div class="text-end"><h4>Total: <span class="text-warning">Rs. <span data-cart-total><?= number_format(
             $total,
             2,
-        ) ?></span></span></h4><button class="btn btn-warning" type="submit" data-place-order>Place Order</button></div></div>
+        ) ?></span></span></h4><button class="btn btn-warning" type="submit" name="action" value="checkout" data-place-order>Place Order</button></div></div>
     </form>
 <?php else: ?>
     <div class="card border-0 shadow-sm text-center p-5"><i class="fas fa-shopping-cart fa-3x text-warning mb-3" aria-hidden="true"></i><h2>Your cart is empty</h2><p class="text-muted mb-4">Browse our products and add the items you need.</p><div><a class="btn btn-warning" href="products.php">Browse Products</a></div></div>
