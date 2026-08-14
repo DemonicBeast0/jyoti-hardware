@@ -18,6 +18,12 @@ if (!$product) {
     exit;
 }
 
+$imageStmt = $pdo->prepare(
+    'SELECT id, image FROM product_images WHERE product_id = ? ORDER BY id ASC'
+);
+$imageStmt->execute([$id]);
+$additionalImages = $imageStmt->fetchAll();
+
 $categories = $pdo->query(
     'SELECT id, name FROM categories WHERE status = 1 ORDER BY name'
 )->fetchAll();
@@ -95,6 +101,11 @@ include '../includes/navbar.php';
                             <input type="file" name="image" class="form-control" accept="image/*">
                         </div>
                         <div class="col-12 mb-3">
+                            <label class="form-label">Add Additional Images <small class="text-muted">(optional)</small></label>
+                            <input type="file" name="additional_images[]" class="form-control" accept="image/*" multiple>
+                            <small class="form-text text-muted">You can select more than one image.</small>
+                        </div>
+                        <div class="col-12 mb-3">
                             <label class="form-label">Description</label>
                             <textarea name="description" rows="6" class="form-control"><?= htmlspecialchars($product['description']); ?></textarea>
                         </div>
@@ -102,6 +113,20 @@ include '../includes/navbar.php';
                             <p>Current Image:</p>
                             <img src="../../<?= htmlspecialchars($product['image']); ?>" class="img-fluid rounded shadow-sm" style="max-height:200px;">
                         </div>
+                        <?php if ($additionalImages): ?>
+                            <div class="col-12 mb-3">
+                                <p>Additional Images:</p>
+                                <div class="d-flex flex-wrap gap-3">
+                                    <?php foreach ($additionalImages as $additionalImage): ?>
+                                        <label class="text-center">
+                                            <img src="../../<?= htmlspecialchars($additionalImage['image']); ?>" class="img-fluid rounded shadow-sm d-block mb-1" style="height:120px;width:120px;object-fit:cover;">
+                                            <input type="checkbox" name="remove_image_ids[]" value="<?= $additionalImage['id']; ?>">
+                                            Remove
+                                        </label>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <button type="submit" class="btn btn-warning">
                         <i class="fas fa-save me-2"></i> Update Product

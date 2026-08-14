@@ -36,9 +36,26 @@ if (!$product) {
     header("Location: products.php");
     exit();
 }
+
+$imageStmt = $pdo->prepare(
+    'SELECT image FROM product_images WHERE product_id = ? ORDER BY id ASC'
+);
+$imageStmt->execute([$id]);
+$additionalImages = $imageStmt->fetchAll();
 ?>
 
 <section class="py-5">
+
+<style>
+    .product-image-stage { display:flex; align-items:center; justify-content:center; min-height:420px; padding:1.5rem; overflow:hidden; background:#fff; border:1px solid #e9ecef; border-radius:1rem; box-shadow:0 .5rem 1.5rem rgba(21,47,87,.10); }
+    .product-image-stage img { width:100%; height:380px; object-fit:contain; }
+    .additional-images-slider { margin-top:1rem; overflow:hidden; border:1px solid #e9ecef; border-radius:.85rem; background:#fff; box-shadow:0 .25rem .75rem rgba(21,47,87,.07); }
+    .additional-images-slider .carousel-item { height:155px; padding:.75rem 3.5rem; background:#f8f9fa; }
+    .additional-images-slider img { width:100%; height:100%; object-fit:contain; }
+    .additional-images-slider .carousel-control-prev, .additional-images-slider .carousel-control-next { width:3rem; }
+    .additional-images-slider .carousel-control-prev-icon, .additional-images-slider .carousel-control-next-icon { width:2.25rem; height:2.25rem; border-radius:50%; background-color:#152f57; background-size:48%; }
+    @media (max-width:991.98px) { .product-image-stage { min-height:320px; } .product-image-stage img { height:290px; } }
+</style>
 
 <div class="container">
 
@@ -46,9 +63,46 @@ if (!$product) {
 
 <div class="col-lg-6">
 
+<div class="product-image-stage mb-3">
 <img
 src="<?= htmlspecialchars($product["image"]) ?>"
-class="img-fluid rounded shadow">
+class="img-fluid"
+alt="<?= htmlspecialchars($product['name']) ?>">
+</div>
+
+<?php if ($additionalImages): ?>
+
+<div id="additionalImagesSlider" class="carousel slide additional-images-slider" data-bs-ride="carousel">
+
+<div class="carousel-inner">
+
+<?php foreach ($additionalImages as $additionalImage): ?>
+
+<div class="carousel-item<?= $additionalImage === $additionalImages[0] ? ' active' : ''; ?>">
+    <a href="<?= htmlspecialchars($additionalImage['image']) ?>" target="_blank" rel="noopener" class="d-flex h-100 align-items-center justify-content-center">
+        <img src="<?= htmlspecialchars($additionalImage['image']) ?>" alt="Additional view of <?= htmlspecialchars($product['name']) ?>">
+    </a>
+</div>
+
+<?php endforeach; ?>
+
+</div>
+
+<?php if (count($additionalImages) > 1): ?>
+
+<button class="carousel-control-prev" type="button" data-bs-target="#additionalImagesSlider" data-bs-slide="prev" aria-label="Previous image">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+</button>
+
+<button class="carousel-control-next" type="button" data-bs-target="#additionalImagesSlider" data-bs-slide="next" aria-label="Next image">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+</button>
+
+<?php endif; ?>
+
+</div>
+
+<?php endif; ?>
 
 </div>
 

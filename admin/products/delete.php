@@ -20,6 +20,15 @@ if ($product && !empty($product['image'])) {
     }
 }
 
+$imageStmt = $pdo->prepare('SELECT image FROM product_images WHERE product_id = ?');
+$imageStmt->execute([$id]);
+foreach ($imageStmt->fetchAll() as $additionalImage) {
+    $imagePath = __DIR__ . '/../../' . $additionalImage['image'];
+    if (file_exists($imagePath)) {
+        @unlink($imagePath);
+    }
+}
+
 $pdo->prepare('DELETE FROM products WHERE id = ?')->execute([$id]);
 
 header('Location: index.php?deleted=1');

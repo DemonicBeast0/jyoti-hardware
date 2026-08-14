@@ -47,6 +47,30 @@ if (!$product) {
 
 $imagePath = $product['image'];
 
+if (!empty($_POST['remove_image_ids']) && is_array($_POST['remove_image_ids'])) {
+    $removeImageStmt = $pdo->prepare(
+        'SELECT id, image FROM product_images WHERE id = ? AND product_id = ? LIMIT 1'
+    );
+    $deleteImageStmt = $pdo->prepare('DELETE FROM product_images WHERE id = ? AND product_id = ?');
+
+    foreach ($_POST['remove_image_ids'] as $imageId) {
+        if (!ctype_digit((string) $imageId)) {
+            continue;
+        }
+
+        $removeImageStmt->execute([(int) $imageId, (int) $id]);
+        $additionalImage = $removeImageStmt->fetch();
+
+        if ($additionalImage) {
+            $filePath = __DIR__ . '/../../' . $additionalImage['image'];
+            if (file_exists($filePath)) {
+                @unlink($filePath);
+            }
+            $deleteImageStmt->execute([(int) $imageId, (int) $id]);
+        }
+    }
+}
+
 if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     $imageDir = __DIR__ . '/../../uploads/products';
     if (!is_dir($imageDir)) {
@@ -83,6 +107,32 @@ $stmt->execute([
     $status,
     $id
 ]);
+
+if (isset($_FILES['additional_images']) && is_array($_FILES['additional_images']['error'])) {
+    $imageDir = __DIR__ . '/../../uploads/products';
+    if (!is_dir($imageDir)) {
+        mkdir($imageDir, 0755, true);
+    }
+
+    $additionalImageStmt = $pdo->prepare(
+        'INSERT INTO product_images (product_id, image) VALUES (?, ?)'
+    );
+
+    foreach ($_FILES['additional_images']['error'] as $index => $uploadError) {
+        if ($uploadError !== UPLOAD_ERR_OK) {
+            continue;
+        }
+
+        $originalName = basename($_FILES['additional_images']['name'][$index]);
+        $extension = pathinfo($originalName, PATHINFO_EXTENSION);
+        $filename = uniqid('prod_', true) . ($extension ? '.' . $extension : '');
+        $destination = $imageDir . DIRECTORY_SEPARATOR . $filename;
+
+        if (move_uploaded_file($_FILES['additional_images']['tmp_name'][$index], $destination)) {
+            $additionalImageStmt->execute([$id, 'uploads/products/' . $filename]);
+        }
+    }
+}
 
 header('Location: index.php?updated=1');
 exit;

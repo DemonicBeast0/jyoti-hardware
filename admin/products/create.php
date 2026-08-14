@@ -45,6 +45,16 @@ Back
 
 <div class="card-body">
 
+<?php if ($error): ?>
+
+    <div class="alert alert-danger">
+
+        <?= htmlspecialchars($error); ?>
+
+    </div>
+
+<?php endif; ?>
+
 <form
 action="store.php"
 method="POST"
@@ -165,6 +175,23 @@ enctype="multipart/form-data">
             class="form-control"
             accept="image/*"
             required>
+
+    </div>
+
+    <!-- Optional Additional Images -->
+
+    <div class="col-12 mb-3">
+
+        <label class="form-label">Additional Images <small class="text-muted">(optional)</small></label>
+
+        <input
+            type="file"
+            name="additional_images[]"
+            class="form-control"
+            accept="image/*"
+            multiple>
+
+        <small class="form-text text-muted">You can select more than one image.</small>
 
     </div>
 

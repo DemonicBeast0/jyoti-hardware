@@ -67,5 +67,35 @@ $stmt->execute([
     $status
 ]);
 
+$productId = (int) $pdo->lastInsertId();
+
+if (isset($_FILES['additional_images']) && is_array($_FILES['additional_images']['error'])) {
+    $additionalImageStmt = $pdo->prepare(
+        'INSERT INTO product_images (product_id, image) VALUES (?, ?)'
+    );
+
+    foreach ($_FILES['additional_images']['error'] as $index => $uploadError) {
+        if ($uploadError === UPLOAD_ERR_NO_FILE) {
+            continue;
+        }
+
+        if ($uploadError !== UPLOAD_ERR_OK) {
+            continue;
+        }
+
+        $originalName = basename($_FILES['additional_images']['name'][$index]);
+        $extension = pathinfo($originalName, PATHINFO_EXTENSION);
+        $filename = uniqid('prod_', true) . ($extension ? '.' . $extension : '');
+        $destination = $imageDir . DIRECTORY_SEPARATOR . $filename;
+
+        if (move_uploaded_file($_FILES['additional_images']['tmp_name'][$index], $destination)) {
+            $additionalImageStmt->execute([
+                $productId,
+                'uploads/products/' . $filename
+            ]);
+        }
+    }
+}
+
 header('Location: index.php?success=1');
 exit;
