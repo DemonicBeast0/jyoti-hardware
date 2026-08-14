@@ -1,5 +1,6 @@
 <?php
 require_once "config/database.php";
+require_once "includes/validation.php";
 
 $products = $pdo
     ->query(
@@ -37,12 +38,15 @@ if (($_SERVER["REQUEST_METHOD"] ?? "GET") === "POST") {
         $error = "Please select a product.";
     } elseif ($form["customer_name"] === "" || $form["phone"] === "") {
         $error = "Please enter your name and phone number.";
+    } elseif (($phone = normalizeNepalPhoneNumber($form["phone"])) === null) {
+        $error = "Please enter a valid Nepal mobile number.";
     } elseif (
         $form["email"] !== "" &&
         !filter_var($form["email"], FILTER_VALIDATE_EMAIL)
     ) {
         $error = "Please enter a valid email address.";
     } else {
+        $form["phone"] = $phone;
         $productName =
             $products[array_search($form["product_id"], $productIds, true)][
                 "name"
@@ -100,7 +104,7 @@ include "includes/navbar.php";
     $form["phone"],
     ENT_QUOTES,
     "UTF-8",
-) ?>" placeholder="+977 98XXXXXXXX" required></div></div></div>
+) ?>" type="tel" inputmode="tel" autocomplete="tel" pattern="(?:\+?977[\s-]?)?9(?:[\s-]?[0-9]){9}" title="Enter a Nepal mobile number, for example 9800000000 or +977 9800000000." maxlength="17" placeholder="+977 98XXXXXXXX" required></div></div></div>
 <div class="row"><div class="col-md-6"><div class="mb-3"><label class="form-label fw-semibold" for="email">Email Address</label><input class="form-control" id="email" type="email" name="email" value="<?= htmlspecialchars(
     $form["email"],
     ENT_QUOTES,
