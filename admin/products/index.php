@@ -7,6 +7,15 @@ require '../../config/database.php';
    FETCH PRODUCTS
 ========================== */
 
+$perPage = 10;
+$requestedPage = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT);
+$page = $requestedPage && $requestedPage > 0 ? $requestedPage : 1;
+
+$totalProducts = (int) $pdo->query('SELECT COUNT(*) FROM products')->fetchColumn();
+$totalPages = max(1, (int) ceil($totalProducts / $perPage));
+$page = min($page, $totalPages);
+$offset = ($page - 1) * $perPage;
+
 $sql = "
 SELECT
     products.*,
@@ -17,10 +26,15 @@ LEFT JOIN categories
 ON products.category_id = categories.id
 LEFT JOIN brands
 ON products.brand_id = brands.id
-ORDER BY products.id DESC
+ORDER BY products.id ASC
+LIMIT :limit OFFSET :offset
 ";
 
-$products = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+$stmt->execute();
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 include '../includes/header.php';
 include '../includes/sidebar.php';
@@ -75,6 +89,14 @@ Add Product
 </thead>
 
 <tbody>
+
+<?php if (!$products): ?>
+
+<tr>
+    <td colspan="7" class="text-center text-muted py-4">No products found.</td>
+</tr>
+
+<?php endif; ?>
 
 <?php foreach($products as $product): ?>
 
@@ -163,6 +185,40 @@ onclick="return confirm('Delete this product?')">
 </tbody>
 
 </table>
+
+<?php if ($totalProducts > 0): ?>
+
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mt-3">
+
+    <p class="mb-0 text-muted small">
+        Showing <?= $offset + 1; ?>–<?= min($offset + $perPage, $totalProducts); ?> of <?= $totalProducts; ?> products
+    </p>
+
+    <?php if ($totalPages > 1): ?>
+
+    <nav aria-label="Products pagination">
+        <ul class="pagination mb-0">
+            <li class="page-item <?= $page <= 1 ? 'disabled' : ''; ?>">
+                <a class="page-link" href="?page=<?= max(1, $page - 1); ?>" aria-label="Previous">Previous</a>
+            </li>
+
+            <?php for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++): ?>
+            <li class="page-item <?= $pageNumber === $page ? 'active' : ''; ?>">
+                <a class="page-link" href="?page=<?= $pageNumber; ?>"><?= $pageNumber; ?></a>
+            </li>
+            <?php endfor; ?>
+
+            <li class="page-item <?= $page >= $totalPages ? 'disabled' : ''; ?>">
+                <a class="page-link" href="?page=<?= min($totalPages, $page + 1); ?>" aria-label="Next">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+    <?php endif; ?>
+
+</div>
+
+<?php endif; ?>
 
 </div>
 
