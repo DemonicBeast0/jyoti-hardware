@@ -1,5 +1,15 @@
 <?php
-require_once __DIR__.'/../../config/products.php';
+require_once __DIR__ . '/../../config/database.php';
+
+$featuredStmt = $pdo->query(
+    'SELECT products.id, products.name, products.image, brands.name AS brand_name
+     FROM products
+     LEFT JOIN brands ON brands.id = products.brand_id
+     WHERE products.status = 1 AND products.featured = 1
+     ORDER BY products.id DESC
+     LIMIT 6'
+);
+$featuredProducts = $featuredStmt->fetchAll();
 ?>
 
 <section class="products-section">
@@ -20,7 +30,7 @@ Quality products from trusted manufacturers.
 
 <div class="row g-4">
 
-<?php foreach($products as $product): ?>
+<?php foreach($featuredProducts as $product): ?>
 
 <div class="col-lg-4 col-md-6">
 
@@ -42,7 +52,7 @@ Quality products from trusted manufacturers.
 
 <p>
 
-<?= $product['brand']; ?>
+<?= htmlspecialchars($product['brand_name'] ?? ''); ?>
 
 </p>
 

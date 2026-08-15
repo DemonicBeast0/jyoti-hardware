@@ -154,6 +154,12 @@ Inquire About This Product
 
 </a>
 
+<?php if (!empty($product['product_url'])): ?>
+<a href="<?= htmlspecialchars($product['product_url']) ?>" class="btn btn-outline-primary btn-lg" target="_blank" rel="noopener noreferrer">
+Visit Product Link
+</a>
+<?php endif; ?>
+
 <?php if ($product["stock"] > 0): ?>
 <form action="cart-action.php" method="post" class="d-inline">
     <input type="hidden" name="action" value="add">

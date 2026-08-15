@@ -37,7 +37,7 @@
         <li>
             <a href="/jyoti-hardware/admin/quotes.php">
                 <i class="fas fa-file-alt"></i>
-                Quotes
+                Inquiries
             </a>
         </li>
 

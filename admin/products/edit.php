@@ -100,6 +100,10 @@ include '../includes/navbar.php';
                             <label class="form-label">Upload New Image</label>
                             <input type="file" name="image" class="form-control" accept="image/*">
                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Product URL <small class="text-muted">(optional)</small></label>
+                            <input type="url" name="product_url" class="form-control" value="<?= htmlspecialchars($product['product_url'] ?? ''); ?>" placeholder="https://example.com/product">
+                        </div>
                         <div class="col-12 mb-3">
                             <label class="form-label">Add Additional Images <small class="text-muted">(optional)</small></label>
                             <input type="file" name="additional_images[]" class="form-control" accept="image/*" multiple>

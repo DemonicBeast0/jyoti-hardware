@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `slug` VARCHAR(255) DEFAULT NULL,
   `description` LONGTEXT DEFAULT NULL,
   `image` VARCHAR(255) DEFAULT NULL,
+  `product_url` VARCHAR(2048) DEFAULT NULL,
   `price` DECIMAL(10,2) NOT NULL DEFAULT 0.00,
   `stock` INT NOT NULL DEFAULT 0,
   `featured` TINYINT(1) NOT NULL DEFAULT 0,
@@ -137,6 +138,7 @@ ALTER TABLE `quotes` ADD COLUMN IF NOT EXISTS `product_id` INT UNSIGNED DEFAULT 
 ALTER TABLE `quotes` ADD INDEX IF NOT EXISTS `idx_quotes_product` (`product_id`);
 ALTER TABLE `quotes` ADD INDEX IF NOT EXISTS `idx_quotes_status` (`status`);
 ALTER TABLE `products` ADD INDEX IF NOT EXISTS `idx_products_status` (`status`);
+ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `product_url` VARCHAR(2048) DEFAULT NULL AFTER `image`;
 ALTER TABLE `categories` ADD INDEX IF NOT EXISTS `idx_categories_status` (`status`);
 ALTER TABLE `brands` ADD INDEX IF NOT EXISTS `idx_brands_status` (`status`);
 ALTER TABLE `products` DROP COLUMN IF EXISTS `badge`;

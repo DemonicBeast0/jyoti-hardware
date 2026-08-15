@@ -25,6 +25,7 @@ $brand_id = trim($_POST['brand_id'] ?? '');
 $status = isset($_POST['status']) ? (int) $_POST['status'] : 0;
 $stock = isset($_POST['stock']) ? (int) $_POST['stock'] : 0;
 $description = trim($_POST['description'] ?? '');
+$productUrl = trim($_POST['product_url'] ?? '');
 
 if (!is_numeric($id) || $name === '' || $price === '' || $category_id === '' || $brand_id === '') {
     header('Location: edit.php?id=' . urlencode($id) . '&error=' . urlencode('Please fill all required fields.'));
@@ -33,6 +34,16 @@ if (!is_numeric($id) || $name === '' || $price === '' || $category_id === '' || 
 
 if (!is_numeric($price) || $price < 0) {
     header('Location: edit.php?id=' . urlencode($id) . '&error=' . urlencode('Invalid price value.'));
+    exit;
+}
+
+if ($productUrl !== '' && filter_var($productUrl, FILTER_VALIDATE_URL) === false) {
+    header('Location: edit.php?id=' . urlencode($id) . '&error=' . urlencode('Please enter a valid product URL.'));
+    exit;
+}
+
+if ($productUrl !== '' && !in_array(strtolower((string) parse_url($productUrl, PHP_URL_SCHEME)), ['http', 'https'], true)) {
+    header('Location: edit.php?id=' . urlencode($id) . '&error=' . urlencode('Product URL must start with http:// or https://.'));
     exit;
 }
 
@@ -93,7 +104,7 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
 $slug = slugify($name);
 
 $stmt = $pdo->prepare(
-    'UPDATE products SET category_id = ?, brand_id = ?, name = ?, slug = ?, description = ?, image = ?, price = ?, stock = ?, status = ? WHERE id = ?'
+    'UPDATE products SET category_id = ?, brand_id = ?, name = ?, slug = ?, description = ?, image = ?, product_url = ?, price = ?, stock = ?, status = ? WHERE id = ?'
 );
 $stmt->execute([
     $category_id,
@@ -102,6 +113,7 @@ $stmt->execute([
     $slug,
     $description,
     $imagePath,
+    $productUrl ?: null,
     $price,
     $stock,
     $status,

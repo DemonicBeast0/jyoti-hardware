@@ -167,6 +167,20 @@ enctype="multipart/form-data">
 
     <div class="col-12 mb-3">
 
+        <label class="form-label">Product URL <small class="text-muted">(optional)</small></label>
+
+        <input
+            type="url"
+            name="product_url"
+            class="form-control"
+            placeholder="https://example.com/product">
+
+        <small class="form-text text-muted">Customers can use this link to visit the product page.</small>
+
+    </div>
+
+    <div class="col-12 mb-3">
+
         <label class="form-label">Product Image</label>
 
         <input

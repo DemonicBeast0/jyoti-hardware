@@ -15,7 +15,7 @@ $totalCategories = $pdo
 
 $totalBrands = $pdo->query("SELECT COUNT(*) FROM brands")->fetchColumn();
 
-$totalQuotes = $pdo->query("SELECT COUNT(*) FROM quotes")->fetchColumn();
+$totalInquiries = $pdo->query("SELECT COUNT(*) FROM quotes")->fetchColumn();
 
 include "includes/header.php";
 include "includes/sidebar.php";
@@ -76,9 +76,9 @@ include "includes/navbar.php";
 
                     <i class="fas fa-file-alt"></i>
 
-                    <h2><?= $totalQuotes ?></h2>
+                    <h2><?= $totalInquiries ?></h2>
 
-                    <p>Total Quote Requests</p>
+                    <p>Total Inquiries</p>
 
                 </a>
 

@@ -23,6 +23,7 @@ $category_id = trim($_POST['category_id'] ?? '');
 $brand_id = trim($_POST['brand_id'] ?? '');
 $status = isset($_POST['status']) ? (int) $_POST['status'] : 0;
 $description = trim($_POST['description'] ?? '');
+$productUrl = trim($_POST['product_url'] ?? '');
 
 if ($name === '' || $price === '' || $category_id === '' || $brand_id === '' || !isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
     header('Location: create.php?error=' . urlencode('Please fill all required fields and upload an image.'));
@@ -31,6 +32,16 @@ if ($name === '' || $price === '' || $category_id === '' || $brand_id === '' || 
 
 if (!is_numeric($price) || $price < 0) {
     header('Location: create.php?error=' . urlencode('Invalid price value.'));
+    exit;
+}
+
+if ($productUrl !== '' && filter_var($productUrl, FILTER_VALIDATE_URL) === false) {
+    header('Location: create.php?error=' . urlencode('Please enter a valid product URL.'));
+    exit;
+}
+
+if ($productUrl !== '' && !in_array(strtolower((string) parse_url($productUrl, PHP_URL_SCHEME)), ['http', 'https'], true)) {
+    header('Location: create.php?error=' . urlencode('Product URL must start with http:// or https://.'));
     exit;
 }
 
@@ -53,7 +64,7 @@ $imagePath = 'uploads/products/' . $filename;
 $slug = slugify($name);
 
 $stmt = $pdo->prepare(
-    'INSERT INTO products (category_id, brand_id, name, slug, description, image, price, stock, featured, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    'INSERT INTO products (category_id, brand_id, name, slug, description, image, product_url, price, stock, featured, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
 );
 $stmt->execute([
     $category_id,
@@ -62,6 +73,7 @@ $stmt->execute([
     $slug,
     $description,
     $imagePath,
+    $productUrl ?: null,
     $price,
     0,
     $status
