@@ -15,6 +15,8 @@ $totalCategories = $pdo
 
 $totalBrands = $pdo->query("SELECT COUNT(*) FROM brands")->fetchColumn();
 
+$totalBranches = $pdo->query("SELECT COUNT(*) FROM branches")->fetchColumn();
+
 $totalInquiries = $pdo->query("SELECT COUNT(*) FROM quotes")->fetchColumn();
 
 include "includes/header.php";
@@ -37,6 +39,20 @@ include "includes/navbar.php";
                     <h2><?= $totalProducts ?></h2>
 
                     <p>Total Products</p>
+
+                </a>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <a class="dashboard-card text-decoration-none d-block text-reset" href="branches.php">
+
+                    <i class="fas fa-map-marker-alt"></i>
+
+                    <h2><?= $totalBranches ?></h2>
+
+                    <p>Total Branches</p>
 
                 </a>
 

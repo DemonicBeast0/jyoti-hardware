@@ -6,11 +6,11 @@ include "includes/navbar.php";
 <?php
 $galleryImages = [
     ["assets/images/about/store.jpg", "Jyoti Suppliers store"],
-    ["assets/images/powertools/power-drill.jpg", "Power tools"],
-    ["assets/images/handtools/hammer.jpg", "Hand tools"],
-    ["assets/images/electric/MCB.jpg", "Electrical supplies"],
-    ["assets/images/plumbing/pipe-fittings.jpg", "Plumbing fittings"],
-    ["assets/images/paints/exterior-paint.jpg", "Paint products"],
+    ["assets/images/hero/hero-2.png", "Power tools"],
+    ["assets/images/hero/hero-3.png", "Hand tools"],
+    ["assets/images/hero/hero-1.png", "Electrical supplies"],
+    ["assets/images/catalog/hdpe-pipe-01.jpg", "Plumbing fittings"],
+    ["assets/images/about/store.jpg", "Paint products"],
 ];
 foreach ($galleryImages as [$image, $alt]): ?>
 <div class="col-md-6 col-lg-4"><figure class="card border-0 shadow-sm h-100 overflow-hidden mb-0"><img src="<?= htmlspecialchars(

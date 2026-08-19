@@ -104,3 +104,91 @@
     transform: scale(1.1);
   }
 }
+
+/* Keep hero copy inside narrow and tablet viewports.  The content uses both
+   sides of the viewport instead of a percentage-width translated box. */
+@media (max-width: 991.98px) {
+  .heroSwiper,
+  .hero-slide {
+    height: min(650px, calc(100vh - var(--header-height, 88px)));
+    min-height: 500px;
+  }
+
+  .hero-container {
+    width: 100%;
+    max-width: none;
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .hero-content {
+    right: 0;
+    left: 0;
+    width: auto;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+    transform: translateY(-50%);
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .heroSwiper,
+  .hero-slide {
+    height: calc(100svh - var(--header-height, 76px));
+    min-height: 480px;
+  }
+
+  .hero-slide img {
+    object-position: center;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(
+      90deg,
+      rgba(14, 35, 65, 0.88) 0%,
+      rgba(21, 47, 87, 0.72) 100%
+    );
+  }
+
+  .hero-container {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .hero-content {
+    padding: 0 16px;
+  }
+
+  .hero-subtitle {
+    margin-bottom: 14px;
+    padding: 8px 14px;
+    font-size: 0.72rem;
+  }
+
+  .hero-content h1,
+  .hero-content h2 {
+    font-size: clamp(2rem, 10vw, 2.6rem);
+    margin-bottom: 16px;
+  }
+
+  .hero-content p {
+    margin-bottom: 24px;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .hero-buttons {
+    gap: 10px;
+  }
+
+  .hero-buttons .btn {
+    width: min(100%, 300px);
+    padding: 12px 20px;
+  }
+}

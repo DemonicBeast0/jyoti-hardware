@@ -12,19 +12,27 @@ $navCategories = $pdo
     )
     ->fetchAll();
 ?>
-<nav class="navbar navbar-expand-xxl fixed-top" aria-label="Primary navigation">
+<nav class="navbar fixed-top" aria-label="Primary navigation">
     <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mainMenu"
+            aria-controls="mainMenu" aria-label="Open navigation menu">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+
         <a class="navbar-brand" href="index.php" aria-label="Jyoti Suppliers home">
             <img src="assets/images/logo/jyoti-suppliers.svg" alt="Jyoti Suppliers">
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu"
-            aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-bars" aria-hidden="true"></i>
-        </button>
-
-        <div class="collapse navbar-collapse" id="mainMenu">
-            <ul class="navbar-nav mx-auto">
+        <div class="offcanvas offcanvas-start navbar-menu-drawer" tabindex="-1" id="mainMenu" aria-labelledby="mainMenuLabel">
+            <div class="offcanvas-header">
+                <h2 class="visually-hidden" id="mainMenuLabel">Navigation menu</h2>
+                <div class="drawer-brand">
+                    <img src="assets/images/logo/jyoti-suppliers.svg" alt="Jyoti Suppliers">
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
+            </div>
+            <div class="offcanvas-body d-flex flex-column">
+            <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link <?= $currentPage ===
                 "index.php"
                     ? "active"
@@ -62,6 +70,10 @@ $navCategories = $pdo
                     ? "active"
                     : "" ?>" href="brands.php">Brands</a></li>
                 <li class="nav-item"><a class="nav-link <?= $currentPage ===
+                "branches.php"
+                    ? "active"
+                    : "" ?>" href="branches.php">Branches</a></li>
+                <li class="nav-item"><a class="nav-link <?= $currentPage ===
                 "about.php"
                     ? "active"
                     : "" ?>" href="about.php">About</a></li>
@@ -89,7 +101,8 @@ $navCategories = $pdo
                         $cartCount > 0
                     ): ?> (<?= $cartCount ?>)<?php endif; ?></span>
                 </a>
-                <a href="contact.php" class="nav-inquiry d-none d-xxl-inline-flex"><i class="fas fa-paper-plane" aria-hidden="true"></i> Inquiry</a>
+                <a href="contact.php" class="nav-inquiry"><i class="fas fa-paper-plane" aria-hidden="true"></i> Inquiry</a>
+            </div>
             </div>
         </div>
     </div>

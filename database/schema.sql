@@ -37,6 +37,19 @@ CREATE TABLE IF NOT EXISTS `brands` (
   KEY `idx_brands_status` (`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS `branches` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(150) NOT NULL,
+  `address` VARCHAR(255) NOT NULL,
+  `map_location` VARCHAR(255) NOT NULL,
+  `phone` VARCHAR(30) DEFAULT NULL,
+  `email` VARCHAR(150) DEFAULT NULL,
+  `status` TINYINT(1) NOT NULL DEFAULT 1,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_branches_status` (`status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE IF NOT EXISTS `products` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `category_id` INT UNSIGNED DEFAULT NULL,
@@ -130,6 +143,10 @@ SELECT 'Makita', 1 WHERE NOT EXISTS (SELECT 1 FROM `brands` WHERE `name` = 'Maki
 INSERT INTO `brands` (`name`, `status`)
 SELECT 'Stanley', 1 WHERE NOT EXISTS (SELECT 1 FROM `brands` WHERE `name` = 'Stanley');
 
+INSERT INTO `branches` (`name`, `address`, `map_location`, `status`)
+SELECT 'Itahari Branch', 'Itahari, Sunsari, Nepal', 'Itahari, Sunsari, Nepal', 1
+WHERE NOT EXISTS (SELECT 1 FROM `branches` WHERE `name` = 'Itahari Branch');
+
 -- Adds the supplied plumbing and water-storage photo catalog to new installations.
 SOURCE database/catalog-images.sql;
 
@@ -141,4 +158,5 @@ ALTER TABLE `products` ADD INDEX IF NOT EXISTS `idx_products_status` (`status`);
 ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `product_url` VARCHAR(2048) DEFAULT NULL AFTER `image`;
 ALTER TABLE `categories` ADD INDEX IF NOT EXISTS `idx_categories_status` (`status`);
 ALTER TABLE `brands` ADD INDEX IF NOT EXISTS `idx_brands_status` (`status`);
+ALTER TABLE `branches` ADD INDEX IF NOT EXISTS `idx_branches_status` (`status`);
 ALTER TABLE `products` DROP COLUMN IF EXISTS `badge`;
