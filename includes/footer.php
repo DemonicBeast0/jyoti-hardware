@@ -13,7 +13,7 @@
             </div>
             <div class="col-lg-2"><h5>Quick Links</h5><ul><li><a href="index.php">Home</a></li><li><a href="about.php">About</a></li><li><a href="products.php">Products</a></li><li><a href="brands.php">Brands</a></li><li><a href="branches.php">Branches</a></li><li><a href="contact.php">Contact</a></li></ul></div>
             <div class="col-lg-3"><h5>Categories</h5><ul><li><a href="products.php?category=1">Power Tools</a></li><li><a href="products.php?category=2">Hand Tools</a></li><li><a href="products.php?category=3">Electrical</a></li><li><a href="products.php?category=4">Plumbing</a></li><li><a href="products.php?category=5">Paints</a></li></ul></div>
-            <div class="col-lg-3"><h5>Contact</h5><p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Itahari, Sunsari, Nepal</p><p><a href="tel:+9779800000000"><i class="fas fa-phone" aria-hidden="true"></i> +977 9800000000</a></p><p><a href="mailto:info@jyotihardware.com"><i class="fas fa-envelope" aria-hidden="true"></i> info@jyotihardware.com</a></p></div>
+            <div class="col-lg-3"><h5>Contact</h5><p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Itahari, Sunsari, Nepal</p><p><a href="tel:+9779852063209"><i class="fas fa-phone" aria-hidden="true"></i> +977 9852063209</a><br><a href="tel:+9779824063209">+977 9824063209</a></p><p><a href="mailto:info@jyotihardware.com"><i class="fas fa-envelope" aria-hidden="true"></i> info@jyotihardware.com</a></p></div>
         </div>
         <hr>
         <div class="copyright">&copy; <?= date(
@@ -21,7 +21,7 @@
         ) ?> Jyoti Suppliers | Designed &amp; Developed by <strong>Pratik Majhi</strong></div>
     </div>
 </footer>
-<a href="https://wa.me/9779800000000" class="whatsapp" target="_blank" rel="noopener" aria-label="Chat with Jyoti Suppliers on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://wa.me/9779824063209" class="whatsapp" target="_blank" rel="noopener" aria-label="Chat with Jyoti Suppliers on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
 <?php if (basename($_SERVER["PHP_SELF"] ?? "") !== "products.php"): ?>
     <?php include "modal.php"; ?>
 <?php endif; ?>
