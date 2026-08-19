@@ -431,3 +431,129 @@ body {
     margin-right: 12px;
   }
 }
+
+/* Use the original horizontal navigation on laptops and larger screens. The
+   off-canvas drawer remains the mobile navigation below this breakpoint. */
+@media (min-width: 992px) {
+  .navbar {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom-color: rgba(226, 232, 240, 0.82);
+    box-shadow: 0 5px 24px rgba(15, 23, 42, 0.06);
+    backdrop-filter: blur(14px);
+  }
+
+  .navbar-toggler {
+    display: none;
+  }
+
+  .navbar > .container {
+    justify-content: flex-start;
+  }
+
+  .navbar-brand {
+    margin-right: 24px;
+  }
+
+  .navbar-menu-drawer {
+    position: static !important;
+    top: auto !important;
+    width: auto !important;
+    height: auto !important;
+    flex: 1 1 auto;
+    display: block !important;
+    visibility: visible !important;
+    overflow: visible;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    transform: none !important;
+    backdrop-filter: none;
+  }
+
+  .navbar-menu-drawer .offcanvas-header {
+    display: none;
+  }
+
+  .navbar-menu-drawer .offcanvas-body {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .navbar-menu-drawer .navbar-nav {
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto !important;
+  }
+
+  .navbar-menu-drawer .nav-item {
+    width: auto;
+  }
+
+  .navbar-menu-drawer .nav-link {
+    display: block;
+    min-height: 0;
+    margin: 0 8px;
+    padding: 12px 3px !important;
+    border-radius: 0;
+    font-size: 0.82rem;
+  }
+
+  .navbar-menu-drawer .nav-link::after {
+    top: auto;
+    right: 3px;
+    bottom: 5px;
+    left: 3px;
+    width: auto;
+    height: 2px;
+    border-radius: 2px;
+    transform: scaleX(0);
+  }
+
+  .navbar-menu-drawer .nav-link:hover,
+  .navbar-menu-drawer .nav-link.active {
+    background: transparent;
+  }
+
+  .navbar-menu-drawer .nav-link:hover::after,
+  .navbar-menu-drawer .nav-link.active::after {
+    transform: scaleX(1);
+  }
+
+  .navbar-menu-drawer .dropdown-toggle::after {
+    margin-left: 0.255em;
+  }
+
+  .navbar-menu-drawer .dropdown-menu {
+    width: auto;
+    margin: 10px 0 0;
+    border-color: #edf0f4;
+    box-shadow: 0 16px 30px rgba(15, 23, 42, 0.14);
+  }
+
+  .navbar-menu-drawer .nav-actions {
+    flex-direction: row;
+    align-items: center !important;
+    gap: 12px;
+    margin-top: 0;
+    margin-left: 12px;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .navbar-menu-drawer .navbar-search-wrap {
+    width: min(210px, 16vw);
+  }
+
+  .navbar-menu-drawer .cart-link {
+    min-height: 0;
+    padding: 0;
+  }
+
+  .navbar-menu-drawer .nav-inquiry {
+    justify-content: initial;
+  }
+}
