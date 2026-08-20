@@ -36,7 +36,9 @@ $currentPage = basename($_SERVER["PHP_SELF"]);
     <!-- Favicon -->
     <link rel="icon"
         type="image/svg+xml"
-        href="assets/images/logo/jyoti-suppliers.svg">
+        href="assets/images/logo/jyoti-suppliers.svg?v=<?= filemtime(
+            __DIR__ . "/../assets/images/logo/jyoti-suppliers.svg",
+        ) ?>">
 
     <!-- Google Fonts -->
     <link rel="preconnect"

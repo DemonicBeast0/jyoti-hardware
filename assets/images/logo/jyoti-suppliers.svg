@@ -1,15 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
-  <title id="title">Jyoti Suppliers</title><desc id="desc">Jyoti Suppliers quality hardware trusted always</desc>
-  <rect width="1200" height="430" fill="white"/>
-  <g font-family="Arial, Helvetica, sans-serif">
-    <text x="45" y="276" fill="#152f57" font-size="238" font-weight="800">J</text>
-    <text x="155" y="276" fill="#f58a16" font-size="238" font-weight="800">S</text>
-    <path d="M234 74l31 0 23 41-23 41-31 0-23-41zM242 144h16v181l-8 22-8-22zM226 164l48-22v28l-48 22zM226 211l48-22v28l-48 22zM226 258l48-22v28l-48 22z" fill="#202124"/>
-    <circle cx="249" cy="115" r="17" fill="white"/>
-    <path d="M385 70v250" stroke="#202124" stroke-width="4"/>
-    <text x="430" y="212" fill="#152f57" font-size="140" font-weight="800" letter-spacing="3">JYOTI</text>
-    <text x="436" y="300" fill="#202124" font-size="66" font-weight="800" letter-spacing="2">SUPPLIERS</text>
-    <path d="M436 334h76M953 334h76" stroke="#f58a16" stroke-width="6"/>
-    <text x="530" y="342" fill="#202124" font-size="22" font-weight="700" letter-spacing="1">QUALITY HARDWARE, TRUSTED ALWAYS</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" role="img" aria-labelledby="title desc">
+  <title id="title">Jyoti Suppliers</title>
+  <desc id="desc">Jyoti Suppliers logo</desc>
+  <defs>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0d3768"/><stop offset="1" stop-color="#062756"/></linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff8508"/><stop offset="1" stop-color="#f26308"/></linearGradient>
+  </defs>
+  <g transform="translate(0 10)">
+    <path fill="url(#blue)" d="M280 240 600 20l210 145-65 46-145-101-210 150H280z"/>
+    <path fill="url(#orange)" d="M810 165 920 240H808L665 140l58-40z"/>
+    <g fill="url(#orange)"><rect x="568" y="154" width="28" height="28"/><rect x="604" y="154" width="28" height="28"/><rect x="568" y="190" width="28" height="28"/><rect x="604" y="190" width="28" height="28"/></g>
+    <path fill="url(#blue)" d="M392 252h145c-29 12-33 29-33 58v153c0 68-36 104-105 104h-85v-61h68c38 0 55-17 55-56V313c0-33-8-50-45-61z"/>
+    <path fill="url(#orange)" d="M635 259h285l-30 59H735c-30 0-48 17-48 45 0 29 18 45 51 45h89c61 0 94 29 94 77 0 52-37 82-100 82H636l31-60h147c29 0 44-11 44-30 0-20-15-31-45-31h-84c-65 0-105-37-105-92 0-59 41-95 111-95z"/>
+    <text x="102" y="730" fill="url(#blue)" font-family="Arial, Helvetica, sans-serif" font-size="112" font-weight="800" letter-spacing="5">JYOTI</text>
+    <text x="532" y="730" fill="url(#orange)" font-family="Arial, Helvetica, sans-serif" font-size="112" font-weight="800" letter-spacing="2">SUPPLIERS</text>
   </g>
 </svg>

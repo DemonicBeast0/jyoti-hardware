@@ -4,6 +4,9 @@ require_once __DIR__ . "/../config/database.php";
 $currentPage = basename($_SERVER["PHP_SELF"] ?? "index.php");
 $navSearch = trim($_GET["search"] ?? "");
 $cartCount = array_sum($_SESSION["cart"] ?? []);
+$logoVersion = filemtime(
+    __DIR__ . "/../assets/images/logo/jyoti-suppliers.svg",
+);
 $selectedCategory =
     filter_input(INPUT_GET, "category", FILTER_VALIDATE_INT) ?: 0;
 $navCategories = $pdo
@@ -20,14 +23,14 @@ $navCategories = $pdo
         </button>
 
         <a class="navbar-brand" href="index.php" aria-label="Jyoti Suppliers home">
-            <img src="assets/images/logo/jyoti-suppliers.svg" alt="Jyoti Suppliers">
+            <img src="assets/images/logo/jyoti-suppliers.svg?v=<?= $logoVersion ?>" alt="Jyoti Suppliers">
         </a>
 
         <div class="offcanvas offcanvas-start navbar-menu-drawer" tabindex="-1" id="mainMenu" aria-labelledby="mainMenuLabel">
             <div class="offcanvas-header">
                 <h2 class="visually-hidden" id="mainMenuLabel">Navigation menu</h2>
                 <div class="drawer-brand">
-                    <img src="assets/images/logo/jyoti-suppliers.svg" alt="Jyoti Suppliers">
+                    <img src="assets/images/logo/jyoti-suppliers.svg?v=<?= $logoVersion ?>" alt="Jyoti Suppliers">
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
             </div>
