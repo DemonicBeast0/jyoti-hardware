@@ -106,15 +106,56 @@ leafletScript.onload = () => {
         attribution: "&copy; OpenStreetMap contributors",
     }).addTo(map);
     let marker;
+    let searchTimer;
+
+    const setMarker = (lat, lng, zoom = 16) => {
+        const position = [lat, lng];
+        if (marker) {
+            marker.setLatLng(position);
+        } else {
+            marker = L.marker(position).addTo(map);
+        }
+        map.setView(position, zoom);
+    };
+
+    const findLocation = async () => {
+        const query = mapLocation.value.trim();
+        if (query.length < 3) {
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                `https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q=${encodeURIComponent(query)}`,
+            );
+            const results = await response.json();
+            if (!results.length) {
+                return;
+            }
+
+            const result = results[0];
+            setMarker(Number(result.lat), Number(result.lon));
+            if (!branchAddress.value.trim()) {
+                branchAddress.value = result.display_name;
+            }
+        } catch (error) {
+            // Keep the form usable when the location service is unavailable.
+        }
+    };
+
+    mapLocation.addEventListener("input", () => {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(findLocation, 700);
+    });
+
+    if (mapLocation.value.trim()) {
+        findLocation();
+    }
 
     map.on("click", async (event) => {
         const { lat, lng } = event.latlng;
         const coordinates = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
-        if (marker) {
-            marker.setLatLng(event.latlng);
-        } else {
-            marker = L.marker(event.latlng).addTo(map);
-        }
+        setMarker(lat, lng, map.getZoom());
         mapLocation.value = coordinates;
         branchAddress.value = "Finding address...";
 
